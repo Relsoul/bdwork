@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style>
+			*{
+				padding: 0;
+				margin: 0;
+				font-family: "微软雅黑";
+			}
+			.container{
+				overflow: hidden;
+				width: 1000px;
+				margin: 200px auto;
+			}
+			#user{
+				float:left;
+				border-right: 2px solid black;
+			}
+			/*#user img{
+				transform: rotate(0deg);
+				-webkit-transform: rotate(0deg);
+			}*/
+			#computer{
+				overflow: hidden;
+			}
+			#computer h2{
+				margin-bottom: 50px;
+			}
+			
+		</style>
+		
+	</head>
+	<body>
+		<div class="container">
+			
+			<div id="user">
+				<div class="text">
+					<h2>玩家</h2>
+					<h2 style="text-align: right; margin-top: -30px;">你已经赢了<span id="win"></span>次</h2>
+				</div>
+				<p style="text-align: center;">请选择你要出的</p>		
+				<img  src="https://raw.githubusercontent.com/baidu-ife/ife/master/2015_summer/asset/bu.jpg" alt="" />
+				<img src="https://raw.githubusercontent.com/baidu-ife/ife/master/2015_summer/asset/jiandao.jpg" alt="" />
+				<img src="https://raw.githubusercontent.com/baidu-ife/ife/master/2015_summer/asset/shitou.jpg" alt="" />
+			</div>
+			<div id="computer">
+				<h2>电脑</h2>
+			</div>
+		</div>
+		
+		<script type="text/javascript">
+			//初始化一些设置
+			function Obj(sElem,cElem,wElem){
+				function $(id){return document.getElementById(id)}
+				this.sElem=$(sElem).getElementsByTagName("img");
+				this.cElem=$(cElem);
+				this.wElem=$(wElem);
+				this.arrImg=["https://raw.githubusercontent.com/baidu-ife/ife/master/2015_summer/asset/bu.jpg",
+				"https://raw.githubusercontent.com/baidu-ife/ife/master/2015_summer/asset/jiandao.jpg",
+				"https://raw.githubusercontent.com/baidu-ife/ife/master/2015_summer/asset/shitou.jpg",
+				]
+				//用来存储赢次数
+				this.win=0;
+			}
+			Obj.prototype.start=function(){
+				var that=this
+				var s=that.sElem;
+				var num=that.num;
+				//利用闭包
+				for(var i=0;i<s.length;i++){
+					~function(i){
+						s[i].addEventListener("click",function(event){
+								that.showComputer(i);
+						})
+					}(i)
+				}
+			}
+			//0为布
+			//1为剪刀
+			//2为石头
+			Obj.prototype.showComputer=function(k){
+				var imgElem=this.cElem.getElementsByTagName("img")
+				//先删除下电脑div中的图片
+				for(var i=imgElem.length-1;i>=0;i--){
+					imgElem[i].parentNode.removeChild(imgElem[i])
+				}
+				var random=Math.round((Math.random()*2))
+				var img=document.createElement("img");
+				this.cElem.appendChild(img);
+				img.src=this.arrImg[random];
+				//重新定义i
+				var i=random;
+				if(k==i){
+				}else if(k==0&&i==2){
+					this.win++
+				}else if(k==1&&i==0){
+					this.win++
+				}else if(k==2&&i==1){
+					this.win++
+				}
+				//每次点击完毕都调用一下showWin()
+				this.showWin()
+			}
+			Obj.prototype.showWin=function(){
+				this.wElem.innerHTML=this.win
+			}
+			var soul=new Obj("user","computer","win")
+			soul.start()
+		</script>
+	</body>
+</html>
