@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Soul笔记本</title>
+		<link rel="stylesheet" href="css/font-awesome.min.css" />
+		<link rel="stylesheet" type="text/css" href="style.css"/>
+		<script src="markdown.js" type="text/javascript" charset="utf-8"></script>
+		<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+		<script src="app.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<div id="warpper">
+			<div id="node_list_add_modle">
+				<div id="node_list_add_modle_content">
+					<h2>请输入需要添加的笔记本列表</h2>
+				<input type="text" name="" id="n_l_a_m_content" />
+				<button id="n_l_a_m_ok">确定</button>
+				<button id="n_l_a_m_off">取消</button>
+				</div>
+				
+			</div>
+			<section id="node">
+				<section id="node_list">
+					<div id="node_wrap">
+						<h1 class="node_nav_title">笔记</h1>
+						<div id="node_list_add">
+							<i class="fa fa-pencil-square"><span>新建笔记</span></i>
+						</div><!--ode_list_add-->
+						<ul id="node_list_main">
+							
+						</ul>
+					</div><!--node_warp-->
+				</section><!--node_list-->
+				<section id="node_nav">
+					<h1 class="node_nav_title">笔记本</h1>
+					<nav>
+						<ul class="node_nav_list">
+							
+						</ul>
+					</nav>
+					<div id="node_nav_add">
+						<i class="fa fa-plus-circle"></i>
+					</div>
+				</section><!--node_nav-->
+				<section id="node_content">
+					<div id="node_content_title">
+						<input type="text" value="图片排版与字体风格"/>
+						<div id="node_content_delete">
+							<i class="fa fa-times"></i>
+						</div>
+						<div id="node_content_edit">
+							<i class="fa fa-edit"></i>
+						</div>
+						<div id="node_content_save">
+							<i class="fa fa-save"></i>
+						</div>
+					</div><!--node_content_title-->
+						<div id="node_content_show"></div>
+						<textarea id="node_content_text">hello-----</textarea>
+				</section><!--node_content-->
+			</section><!--node-->
+		</div>
+	</body>
+</html>

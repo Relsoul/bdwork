@@ -1,0 +1,183 @@
+* {
+  padding: 0;
+  margin: 0;
+  font-family: "微软雅黑";
+}
+body,
+html {
+  width: 100%;
+  height: 100%;
+}
+#warpper {
+  overflow: hidden;
+}
+#node_wrap {
+  margin: 0 65% 0 190px;
+}
+#node_list {
+  width: 100%;
+  float: left;
+  background: #39c;
+  height: 100%;
+  overflow: hidden;
+  overflow-y: scroll;
+}
+#node_nav {
+  float: left;
+  width: 190px;
+  background: #eee;
+  margin-left: -100%;
+  height: 100%;
+}
+#node_content {
+  float: left;
+  width: 65%;
+  margin-left: -65%;
+  background: #fff;
+  height: 100%;
+  display: none;
+}
+.node_nav_list {
+  margin-top: 200px;
+}
+.node_nav_list > li {
+  height: 30px;
+  line-height: 30px;
+  padding-left: 40px;
+}
+.node_nav_list > li:hover {
+  cursor: default;
+  background: #003333;
+}
+#node_nav_add {
+  font-size: 28px;
+  margin-top: 100px;
+  text-align: center;
+}
+#node_list_main {
+  margin-top: 120px;
+  padding-left: 10px;
+}
+#node_list_main > li {
+  box-sizing: border-box;
+  padding: 10px;
+  margin-top: 10px;
+  width: 100%;
+  height: 150px;
+  background: #eee;
+}
+#node_list_main > li:hover {
+  background: transparent;
+  cursor: default;
+  border: 1px solid #fff;
+  border-radius: 8px;
+}
+#node_list_main > li p {
+  padding-top: 10px;
+  line-height: 23px;
+}
+#node_list_add {
+  width: 100%;
+  font-size: 28px;
+  text-align: center;
+  margin-top: 50px;
+  background: orange;
+  margin-left: 5px;
+  border-radius: 10px;
+}
+#node_list_add:hover {
+  cursor: default;
+  background: #00316C;
+  color: #fff;
+}
+#node_content_title {
+  position: relative;
+  box-sizing: border-box;
+  padding: 100px;
+  width: 100%;
+  height: 30%;
+  background: orangered;
+}
+#node_content_title input {
+  border: none;
+  width: 100%;
+  font-size: 30px;
+  background: transparent;
+  color: #fff;
+}
+#node_content_delete {
+  position: absolute;
+  top: 0;
+  right: 10px;
+  height: 28px;
+  font-size: 28px;
+}
+#node_content_edit {
+  position: absolute;
+  top: 0;
+  right: 50px;
+  font-size: 28px;
+}
+#node_content_save {
+  position: absolute;
+  top: 0;
+  right: 100px;
+  font-size: 28px;
+}
+#node_content_text {
+  box-sizing: border-box;
+  width: 100%;
+  outline: none;
+  resize: none;
+  height: 70%;
+  overflow: hidden;
+  overflow-y: scroll;
+  color: #4e4e4e;
+  border: none;
+  padding: 6px 8px;
+  display: none;
+}
+#node_list_add_modle {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  z-index: 999;
+  background: rgba(0, 0, 0, 0.5);
+  display: none;
+}
+#node_list_add_modle_content {
+  position: absolute;
+  width: 400px;
+  height: 400px;
+  padding-top: 10px;
+  background: #fff;
+  border-radius: 20px;
+  margin-left: -200px;
+  left: 50%;
+  margin-top: -200px;
+  top: 50%;
+  text-align: center;
+}
+#node_list_add_modle_content button {
+  width: 100%;
+  line-height: 50px;
+  background: orangered;
+  border: none;
+  margin-top: 10px;
+}
+#n_l_a_m_content {
+  box-sizing: border-box;
+  border: 1px solid orangered;
+  border-radius: 5px;
+  display: block;
+  width: 100%;
+  font-size: 30px;
+  background: transparent;
+  color: black;
+}
+#node_content_show {
+  width: 100%;
+  height: 70%;
+  overflow: hidden;
+  overflow-y: scroll;
+}
