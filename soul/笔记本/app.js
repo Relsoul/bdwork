@@ -123,12 +123,13 @@ $(function(){
 				var _updata=that.callDate;
 				var _daleteNode=that.deleteNode;
 				var _updateList=that.nodeList;
-				noteContentPoint=0;
-			if($("#node_content").attr("display")=="block"||$("#node_content").css("display")=="block"){
-				$("#node_content").hide(200)
-//				alert("请先点击保存按钮");
-//				return false;
+				var _navColor=that.navColor;
+				if($("#node_content").attr("display")=="block"||$("#node_content").css("display")=="block"){
+				alert("请先点击保存按钮");
+				return false;
 			}
+				noteContentPoint=0;
+			
 				//清空列表内容
 				$("#node_list_main").html("")
 				//指针指向的是点击的列表index
@@ -136,6 +137,7 @@ $(function(){
 				//更新下本地缓存
 				_updata()
 				console.log("list:"+index)
+				_navColor()
 				//添加列表内容
 				if(content[index].list==undefined||typeof content[index].list=="undefined"){
 					return false;
@@ -150,6 +152,14 @@ $(function(){
 	//先清空列表内容
 	Obj.prototype.deleteNode=function(){
 		$("#node_list_main").html("")
+	}
+	
+	Obj.prototype.navColor=function(){
+		$(".node_nav_list").find("li").each(function(index,domEle){
+			$(domEle).attr("id","")
+		})
+		$(".node_nav_list").find("li").eq(newnodePointer).attr("id","nav_color")
+		
 	}
 	
 	//更新笔记本列表
@@ -167,11 +177,13 @@ $(function(){
 		var _updata=that.callDate;
 		$(_elem).each(function(index,domEle){
 			$(domEle).on("click",function(){
+				if($("#node_content_title input").prop("disabled")==false){
+					$("#node_content_title input").attr("disabled",true)
+				}
 				if($("#node_content_text").attr("display")=="block"||$("#node_content_text").css("display")=="block"||$("#node_content_text").css("display")=="inline-block"){
 					alert("请先点击保存按钮");
 					return false;
 				}
-				
 				var ptext=markdown.toHTML( $(this).find("p").text())
 				$("#node_content_show").show(200)
 				$("#node_content_show").html(ptext)
@@ -199,10 +211,14 @@ $(function(){
 		$("#node_content_edit").on("click",function(){
 			//双重判断编辑的状态
 			console.log(maindata)
+			if($("#node_content_title input").prop("disabled")==true){
+					$("#node_content_title input").removeAttr("disabled")
+				}
 			if($("#node_content_show").attr("display")=="none"||$("#node_content_show").css("display")=="none"){
 				console.log("ok")
 				return false;
 			}
+			
 			
 			console.log($("#node_content_text").css("display"))
 		$("#node_content_show").hide(200);
@@ -231,6 +247,7 @@ $(function(){
 					con[newnodePointer].list[noteContentPoint].main=maintext;
 					_updata()
 					//删除列表 重新生成列表
+					$("#node_content_title input").attr("disabled",true)
 					_deleteNode()
 					console.log(index)
 					console.log("newnodePointer:"+newnodePointer)
@@ -258,7 +275,12 @@ $(function(){
 		var _updata=that.callDate;
 		var _newNote=that.updataNote;
 		var elem=$("#node_list_main").find("li");
+		var _navColor=that.navColor;
 		$("#node_list_add").on("click",function(){
+			if($("#node_content_text").attr("display")=="block"||$("#node_content_text").css("display")=="block"||$("#node_content_text").css("display")=="inline-block"){
+				alert("请点击保存按钮")
+				return false;
+			}
 			console.log("hello")
 			//清空列表内容
 				$("#node_list_main").html("")
@@ -268,6 +290,9 @@ $(function(){
 				_updata()
 				
 				//添加列表内容
+				if($("#node_content_title input").prop("disabled")==true){
+					$("#node_content_title input").removeAttr("disabled")
+				}
 				if(content[newnodePointer].list==undefined||typeof content[newnodePointer].list=="undefined"){
 					return false;
 				}
@@ -275,27 +300,28 @@ $(function(){
 					_newNote(elem,content[newnodePointer].list[i].title,content[newnodePointer].list[i].main)
 				}
 				_updateList(that)
-				
+				_navColor()
+				var len=$("#node_list_main").find("li").length;
 			if($("#node_content").attr("display")=="none"||$("#node_content").css("display")=="none"){
 				noteContentPoint++;
 				$("#node_content").show(200)
 			}
+			noteContentPoint=len
 			$("#node_content_title input").attr("value","请输入标题");
 			$("#node_content_title input").attr("placeholder","请输入标题");
+			$("#node_content_text").val(" ")
 			$("#node_content_show").hide(200)
 			$("#node_content_text").show(200);
-			console.log("conetntnoteContentPoint:"+noteContentPoint)
+			console.log("len:"+len)
 			_updata()
-			content[newnodePointer].list[noteContentPoint]={"id":0,"title":" ","main":" "}
-			console.log(content[newnodePointer].list)
+			content[newnodePointer].list[len]={"id":0,"title":" ","main":" "}
+			console.log($("#node_content_text").val())
 			_updata()
-			
-			
 		})
 		
 	}
 	
-	
+
 	
 	var soul=new Obj();
 	soul.init()

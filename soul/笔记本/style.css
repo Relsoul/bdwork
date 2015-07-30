@@ -47,7 +47,7 @@ html {
 }
 .node_nav_list > li:hover {
   cursor: default;
-  background: #003333;
+  background: #00B3B3;
 }
 #node_nav_add {
   font-size: 28px;
@@ -180,4 +180,7 @@ html {
   height: 70%;
   overflow: hidden;
   overflow-y: scroll;
+}
+#nav_color {
+  background: #003333;
 }
