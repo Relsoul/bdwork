@@ -1,20 +1,15 @@
 $(function(){
 	var lo=window.localStorage;
-	var content=[{
-			"title":"设计",
-			"list":[{
-				"id":0,
-				"title":"图片排版与字体风格",
-				"main":"**如果两张图片风格**"
-			},]
-		}]
-	var navclick=1;
-	var noteContentPoint=0;
-	var newnodePointer=0;
-	lo["data"]=JSON.stringify(content);
-	lo["navclick"]=navclick;
-	lo["newnodePointer"]=newnodePointer;
-	lo["noteContentPoint"]=noteContentPoint;
+	if(lo["data"]){
+		content=JSON.stringify(lo["data"] )
+		console.log(content)
+	}else{
+		var content;
+	}
+	
+	var navclick;
+	var noteContentPoint;
+	var newnodePointer;
 	
 	function Obj(){}
 	//清除本地缓存
@@ -26,9 +21,29 @@ $(function(){
 	//初始化
 	Obj.prototype.init=function(){
 		//清除缓存
-		this.clearLo();
+		 if (!localStorage.firstlo) 
+        { 
+        localStorage.firstlo=1; 
+         content=[{
+			"title":"设计",
+			"list":[{
+				"id":0,
+				"title":"图片排版与字体风格",
+				"main":"**如果两张图片风格**"
+			},]
+		}]
+        }
+      this.callDate()
+	navclick=1;
+	noteContentPoint=0;
+	newnodePointer=0;
+	lo["data"]=JSON.stringify(content);
+	lo["navclick"]=navclick;
+	lo["newnodePointer"]=newnodePointer;
+	lo["noteContentPoint"]=noteContentPoint;
+		this.callDate()
 		this.noteSave(newnodePointer,this)
-		
+
 		$("#node").height($(window).height())
 		//限制文本字数
 		$("#node_list_main").find("li p").each(function(){
@@ -54,7 +69,7 @@ $(function(){
 	Obj.prototype.callDate=function(){
 		//更新data
 		if(typeof content=="string"){
-			content=JSON.parse(content);
+			content=JSON.parse(lo["data"]);
 		}
 		console.log(content)
 		lo["data"]=JSON.stringify(content);
@@ -71,7 +86,7 @@ $(function(){
 		var callDate=this.callDate;
 		var navUpdata=this.navUpdata;
 		var listLen=this.listLen;
-		var _navNode=this.navNode
+		var _navNode=this.navNode;
 		var _noteNavDelete=this.noteNavDelete
 		var that=this;
 		//点击添加事件
