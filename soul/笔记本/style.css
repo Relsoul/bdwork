@@ -54,6 +54,11 @@ html {
   margin-top: 100px;
   text-align: center;
 }
+#node_nav_delete {
+  font-size: 28px;
+  margin-top: 50px;
+  text-align: center;
+}
 #node_list_main {
   margin-top: 120px;
   padding-left: 10px;
@@ -145,6 +150,14 @@ html {
   background: rgba(0, 0, 0, 0.5);
   display: none;
 }
+.modle_lib {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  z-index: 999;
+  background: rgba(0, 0, 0, 0.5);
+  display: none;
+}
 #node_list_add_modle_content {
   position: absolute;
   width: 400px;
@@ -183,4 +196,18 @@ html {
 }
 #nav_color {
   background: #003333;
+}
+.delete_list {
+  padding-left: 30px;
+  display: none;
+}
+#node_list_main li {
+  position: relative;
+  list-style: none;
+}
+.note_delete {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 18px;
 }

@@ -41,7 +41,7 @@ $(function(){
 		//初始化充填数据
 		for(var i=0;i<content.length;i++){
 			console.log(content[i].title)
-			var elem="<li data-title="+content[i].title+">"+content[i].title +"(<span>"+content[i].list.length+"</span>)</li>"
+			var elem="<li data-title="+content[i].title+">"+content[i].title +"(<span>"+content[i].list.length+"</span>) <span class='delete_list'><i class='fa fa-remove'></i></span></li>"
 			$(".node_nav_list").append(elem)
 		}
 		//更新列表绑定事件
@@ -72,6 +72,7 @@ $(function(){
 		var navUpdata=this.navUpdata;
 		var listLen=this.listLen;
 		var _navNode=this.navNode
+		var _noteNavDelete=this.noteNavDelete
 		var that=this;
 		//点击添加事件
 		$("#node_nav_add").on("click",function(){
@@ -79,18 +80,21 @@ $(function(){
 		})
 		//点击确定事件
 		$("#n_l_a_m_ok").on("click",function(){
+			callDate()
 			var inputv=$("#n_l_a_m_content").val()
 			if(inputv==null||inputv==""){alert("请输入笔记本名字");return false;}
 			content.push({"title":inputv,"list":[{"title":"默认数据","main":"默认数据"}]})
 			callDate()
 			
-			var elem="<li data-title="+content[navclick].title+">"+content[navclick].title +"(<span>"+listLen(content[navclick].list)+"</span>)</li>"
+			var elem="<li data-title="+content[navclick].title+">"+content[navclick].title +"(<span>"+listLen(content[navclick].list)+"</span>)<span class='delete_list'><i class='fa fa-remove'></i></span></li>"
 			navclick++
+
 			navUpdata(elem)
 			$("#node_list_add_modle").hide(200)
 			console.log(lo["navclick"])
 			//更新li绑定事件列表
 			_navNode(that)
+			_noteNavDelete(that)
 			
 		})
 		$("#n_l_a_m_off").on("click",function(){
@@ -124,6 +128,7 @@ $(function(){
 				var _daleteNode=that.deleteNode;
 				var _updateList=that.nodeList;
 				var _navColor=that.navColor;
+				var _noteDelete=that.noteDelete;
 				if($("#node_content").attr("display")=="block"||$("#node_content").css("display")=="block"){
 				alert("请先点击保存按钮");
 				return false;
@@ -146,6 +151,7 @@ $(function(){
 					_newNote(elem,content[index].list[i].title,content[index].list[i].main)
 				}
 				_updateList(that)
+				_noteDelete(that)
 			})
 		})
 	}
@@ -165,7 +171,7 @@ $(function(){
 	//更新笔记本列表
 	Obj.prototype.updataNote=function(elem,title,main){
 		var mainElem=$("#node_list_main")
-		var newElem="<li><h3>"+title+"</h3><p>"+main+"</p></li>"
+		var newElem="<li><h3>"+title+"</h3><p>"+main+"</p><span class='note_delete'><i class='fa fa-remove'></i></span></li>"
 		$(mainElem).append(newElem);
 	}
 	
@@ -236,6 +242,7 @@ $(function(){
 		var _deleteNode=that.deleteNode
 		var _newNote=that.updataNote;
 		var _updateList=that.nodeList;
+		var _noteDelete=that.noteDelete
 		$("#node_content_save").on("click",function(){
 			//只有编辑状态才能保存
 			if($("#node_content_text").attr("display")=="block"||$("#node_content_text").css("display")=="block"||$("#node_content_text").css("display")=="inline-block"){
@@ -257,6 +264,7 @@ $(function(){
 					_newNote(elem,content[newnodePointer].list[i].title,content[newnodePointer].list[i].main)
 				}
 				_updateList(that)
+				_noteDelete(that)
 				$("#node_content").hide(200)
 				$("#node_content_text").hide(200)
 			}
@@ -276,6 +284,7 @@ $(function(){
 		var _newNote=that.updataNote;
 		var elem=$("#node_list_main").find("li");
 		var _navColor=that.navColor;
+		var _noteDelete=that.noteDelete
 		$("#node_list_add").on("click",function(){
 			if($("#node_content_text").attr("display")=="block"||$("#node_content_text").css("display")=="block"||$("#node_content_text").css("display")=="inline-block"){
 				alert("请点击保存按钮")
@@ -301,6 +310,7 @@ $(function(){
 				}
 				_updateList(that)
 				_navColor()
+				_noteDelete()
 				var len=$("#node_list_main").find("li").length;
 			if($("#node_content").attr("display")=="none"||$("#node_content").css("display")=="none"){
 				noteContentPoint++;
@@ -321,12 +331,62 @@ $(function(){
 		
 	}
 	
+	//删除笔记本列表
+	Obj.prototype.noteNavDelete=function(that){
+		var that=that||this;
+		var first=true;
+		function fuc(){
+			if(!first){
+				$(".delete_list").hide(200);
+				first=true
+			}else{
+				$(".delete_list").show(200)
+				first=false;
+				$(".delete_list").each(function(index,domEle){
+			$(domEle).on("click",function(e){
+				if(confirm("是否删除该笔记列表？")){
+				var ls=$(this).parent().index()
+				e.stopImmediatePropagation();
+				that.callDate
+				content.splice(ls,1)
+				$(this).parent().remove()
+				navclick--
+				that.callDate()
+				}
+				
+			})
+			})
+			}
+		
+		}
+		$("#node_nav_delete").on("click",fuc)
+		
+	}
+	
+	//删除笔记列表
+	Obj.prototype.noteDelete=function(that){
+		var that=that||this;
+		$(".note_delete").each(function(index,domEle){
+			$(domEle).on("click",function(e){
+				that.callDate()
+				var ls=$(this).parent().index()
+				content[newnodePointer].list.splice(ls,1)
+				that.callDate()
+				$(this).parent().remove()
+				e.stopImmediatePropagation();
+				
+			})
+		})
+	}
+	
 
 	
 	var soul=new Obj();
 	soul.init()
 	soul.navAdd();
 	soul.createNote();
+	soul.noteNavDelete();
+	soul.noteDelete();
 	
 	
 })
