@@ -1,0 +1,621 @@
+*{
+	margin: 0;padding: 0;
+	font-family: "微软雅黑";
+	font-size: 14px;
+}
+ul li{
+	list-style: none;
+	display: inline-block;
+}
+html,body{
+	width: 100%;
+}
+img{
+	border: none;
+}
+
+.centerLib{
+	width: 1206px;
+	margin: 0 auto;
+}
+.top {
+	height: 35px;
+	background: #f3f3f3;
+	line-height: 35px;
+	overflow: hidden;
+}
+.top p{
+	float: left;
+	font-size: 12px;
+	cursor: default;
+}
+.top p a{
+	color:#9bccab;
+	text-decoration: none;
+}
+
+#topX{
+	float: right;
+}
+
+.logoNav{
+	margin-top: 30px;
+	
+}
+
+.logoNav li{
+	font-family: '宋体';
+	font-size: 12px;
+	vertical-align: middle;
+}
+.logoNav-left{
+	float: left;
+}
+
+.logoNav-left .logo{
+	width: 236px;
+	height: 23px;
+	background: url(img/spring.png) no-repeat 0px 0px;
+}
+/*关注*/
+.logoNav-left .curt span{
+	height: 23px;
+	line-height: 23px;
+	vertical-align: top;
+	margin-left: 15px;
+}
+
+.logoNav-left .curt>button{
+	margin-left: 30px;
+	margin-right: 14px;
+	outline: none;
+	border: none;
+}
+.logoNav-left .curt span{
+	font-size:12px ;
+	font-family: '宋体';
+}
+
+.logoNav-left .curt .button-off{
+	width: 54px;
+	height: 23px;
+	background: url(img/spring.png) no-repeat 0px -28px;
+
+}
+.logoNav-left .curt .button-off span,.logoNav-left .curt .button-off  a{
+	display: none;
+}
+
+/*关注 button*/
+.logoNav-left .curt .button-off:hover{
+	background: url(img/spring.png) no-repeat -59px -28px;
+}
+
+/*已关注*/
+.curt button.button-ok{
+	font-size:12px ;
+	font-family: '宋体';
+	width: 106px;
+	height: 21px;
+	background: url(img/spring.png) no-repeat -117px -28px
+}
+.curt button.button-ok span{
+	
+	display: inline-block;
+	border-right: 1px solid #cccccc;
+	height: 12px;
+	line-height: 12px;
+	vertical-align: middle;
+	padding-right: 10px;
+}
+
+.curt button.button-ok a{
+	font-size:12px ;
+	font-family: '宋体';
+	color: #999999;
+	vertical-align: middle;
+	text-decoration: none;
+	padding-left: 8px;
+}
+/*已关注a hover*/
+.curt button.button-ok a:hover{
+	color: #21a557;
+	text-decoration: underline;
+}
+/*END 已关注*/
+
+.logoNav-right{
+	float: right;
+}
+.logoNav-right li{
+	font-size: 0;
+	margin-right: 50px;
+}
+
+.logoNav-right li a{
+	font-family: "微软雅黑";
+	font-size: 16px;
+	color: #666666;
+	text-decoration: none;
+}
+.logoNav-right .curt:hover{
+	color: #39a030;
+}
+/*搜索hover */
+.logoNav-right .Nav-search{
+	display:inline-block;
+	width: 22px;
+	height: 20px;
+	background: url(img/spring.png) no-repeat 0px -54px;
+}
+.logoNav-right .Nav-search:hover{
+		background: url(img/spring.png) no-repeat -35px -54px;
+}
+/*搜索hover  End*/
+#banner{
+	width: 100%;
+	height: 460px;
+	overflow: hidden;
+	position: relative;
+
+}
+#banner #show-img{
+	margin-top: 37px;	
+	width: 9999px;
+	position: relative;
+	height: 460px;
+	left: 0;
+}
+#banner #show-img li{
+	float: left;
+}
+
+#banner #show-img li img{
+height: 460px;
+}
+#banner #dot{
+	position: absolute;
+	bottom: 20px;
+	left:50%;
+	z-index: 111;
+}
+#banner #dot i.d-curt{
+	background: #333333;
+}
+#banner #dot i{
+	display: inline-block;
+	width: 10px;
+	height: 10px;
+	border-radius:50% 50% ;
+	background: #fff;
+}
+
+/*网站介绍*/
+.webInfo{
+	margin-top: 65px;
+}
+.webInfo .webIntro li{
+	display: inline-block;
+	list-style: none;
+}
+.webInfo .webIntro .webMargin{
+	margin:0 73px;
+}
+.webInfo .webIntro .web-into{
+	width: 245px;
+	margin-left: 105px;
+}
+.webInfo .webIntro .web-into h2{
+	font-size: 22px;
+	font-weight: normal;
+	color: #333333;
+}
+.webInfo .webIntro .web-into p{
+	font-size: 14px;
+	margin-top: 20px;
+	margin-bottom:35px ;
+	color: #8c8c8c;
+}
+.webInfo .webIntro .web-into a{
+	color: #39a030;
+	text-decoration: none;
+}
+.webInfo .webIntro .web-into a:hover{
+	text-decoration: underline;
+}
+.webInfo .webIntro .gkc,.webInfo .webIntro .ykt,.webInfo .webIntro .mooc{
+	margin-top:10px ;
+	float: left;
+}
+.webInfo .webIntro .gkc{
+	height: 84px;
+	width: 85px;
+	background: url(img/spring.png) no-repeat 0 -77px ;
+}
+
+.webInfo .webIntro .ykt{
+	height: 84px;
+	width: 85px;
+	background: url(img/spring.png) no-repeat -90px -77px ;
+}
+.webInfo .webIntro .mooc{
+	height: 84px;
+	width: 85px;
+	background: url(img/spring.png) no-repeat -183px -77px ;
+}
+
+/*工作环境*/
+.workImg{
+	margin-top: 50px;
+	margin-bottom: 80px;
+	width: 100%;
+}
+.workImg img{
+	width: 100%;
+	height: 220px;
+}
+
+/*登陆模态框*/
+#model{
+	width: 100%;
+	height: 0;
+	background: rgba(0,0,0,0.5);
+	position: absolute;
+	z-index: 999;
+	left: 0;
+	top: 0;
+	display: none;
+}
+#model .login{
+	box-sizing: border-box;
+	-ms-box-sizing: border-box;
+	height: 290px;
+	width: 385px;
+	position: absolute;
+	background: #fff;
+	left: 50%;
+	top: 50%;
+	margin-top: -145px;
+	margin-left: -192.5px;
+	z-index: 888;
+	padding: 30px 50px 39px 39px;
+}
+#model #loginClose,#model #videoInfo #videoClose{
+	cursor: pointer;
+	font-style: normal;
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	font-weight: bold;
+}
+#model .login h2{
+	margin-bottom: 20px;
+	font-size: 18px;
+	font-weight:normal;
+	color: #444;
+}
+#model .login input{
+	background-color:#fafafa ;
+	box-sizing: border-box;
+	-ms-box-sizing: border-box;
+	display: block;
+	width: 100%;
+	height: 43px;
+	border: 1px solid #dfdfdf;
+	padding-left:10px;
+	margin-bottom: 15px;
+}
+#model .login button{
+	cursor: pointer;
+	margin-top: 30px;
+	outline: none;
+	border: none;
+	width: 100%;
+	height: 45px;
+	display: block;
+	background: url(img/spring.png) repeat-x 0px -162px;
+	font-size: 16px;
+	color: #fff;
+}
+/*视频模态框*/
+#model #videoInfo{
+	box-sizing: border-box;
+	padding: 30px;
+	width: 950px;
+	height: 630px;
+	position: absolute;
+	background: #fff;
+	left: 50%;
+	top: 50%;
+	margin-top: -338px;
+	margin-left: -475px;
+	z-index: 888;
+}
+#model #videoInfo h2{
+	font-size: 18px;
+	color: #444444;
+	font-weight: normal;
+}
+#model #videoInfo video{
+	margin-top: -15px;
+	width:890px;
+	 height:566px;
+}
+
+/*课程title列表按钮*/
+.classInfo{
+	overflow: hidden;
+}
+.classInfo .clsIntro #clsTitle {
+	font-size: 0;
+}
+.classInfo .clsIntro {
+	width: 980px;
+	float: left;
+}
+.classInfo .clsIntro #clsTitle li{
+	cursor: pointer;
+	font-size: 20px;
+	line-height: 50px;
+	color:#666666;
+	text-align: center;
+	width: 200px;
+	height: 50px;
+	background:#ffffff;
+	box-shadow: 2px 2px #d4d3d3;
+}
+.classInfo .clsIntro #clsTitle li.curt{
+	color: #fff;
+	background: #39a030;
+}
+/*课程列表*/
+.classInfo .clsIntro #clsList{
+	margin-top: 30px;
+}
+.classInfo .clsIntro #clsList li{
+	position: relative;
+	font-size: 12px;
+	padding-left: 5px;
+	margin-right: 20px;
+	margin-bottom: 20px;
+	box-shadow: 0px 0px 2px 2px #f1f1f1;
+	
+}
+.classInfo .clsIntro #clsList li img{
+	padding: 1px;
+	margin-left: -5px;
+	width: 222px;
+	height: 124px;
+}
+.classInfo .clsIntro #clsList li h4,.classInfo .clsIntro #clsList li p{
+	margin-top: 5px;
+}
+
+.classInfo .clsIntro #clsList li h4{
+	width: 220px;
+	font-weight: normal;
+	color: #333333;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+.classInfo .clsIntro #clsList li .clsGroup{
+	color: #999999;
+}
+.classInfo .clsIntro #clsList li .clsUser{
+	display: inline-block;
+	height: 15px;
+	padding-left: 13px;
+	padding-right: 5px;
+	background: url(img/spring.png) no-repeat -283px 2px;
+	border: 1px solid #dddddd;
+	border-radius: 2px 2px;
+	color:#999999;
+	font-size: 12px;
+}
+.classInfo .clsIntro #clsList li .clsCost{
+	color: #ff3f00;
+}
+/*列表分页*/
+.classInfo .clsIntro #clsPage{
+	float: right;
+	margin-right: 22px;
+}
+.classInfo .clsIntro #clsPage a{
+	margin: 0 3px;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 14px;
+	text-align: center;
+	width: 20px;
+	height: 20px;
+	color:#666666;
+	cursor:pointer;
+}
+.classInfo .clsIntro #clsPage a:hover{
+	background: #9dd8b1;
+}
+/*当前选中*/
+.classInfo .clsIntro #clsPage a.curt{
+	color: #39a030;
+}
+/*上一页 下一页*/
+.classInfo .clsIntro #clsPage a.pn{
+	color: #fff;
+	cursor:pointer;
+	font-size: 15px;
+	text-align: center;
+	display: inline-block;
+	width: 30px;
+	height: 20px;
+	background: #9dd8b1;
+	color: #fff;
+}
+
+/*鼠标移入的课程详情class*/
+.classInfo .clsIntro #clsList li .hoverDiv{
+	background: #fff;
+	position: absolute;
+	left: 0;
+	top: 0;
+	z-index: 88;
+	width: 470px;
+	height: 230px;
+	overflow: hidden;
+}
+
+.classInfo .clsIntro #clsList li .hoverInner{
+	box-sizing: border-box;
+	padding: 10px;
+	overflow: hidden;
+}
+
+.classInfo .clsIntro #clsList li .hoverInner img{
+	float: left;
+	margin-right: 20px;
+}
+.classInfo .clsIntro #clsList li .hoverInner h3{
+	color:#333333;
+	font-weight: normal;
+	font-size: 18px;
+}
+
+.classInfo .clsIntro #clsList li .hoverInner p{
+	font-size: 12px;
+	color: #666666;
+}
+.classInfo .clsIntro #clsList li .hoverInner .innerStudy{
+	overflow: hidden;
+	background: url(img/spring.png) no-repeat -283px 2px;
+	padding-left:15px ;
+}
+
+.classInfo .clsIntro #clsList li .outerP{
+	clear: both;
+	color:#666666;
+	font-size: 14px;
+	background: #f8f8f8;
+	padding: 20px;
+}
+
+/*课程机构*/
+.classInfo .clsHot{
+	overflow: hidden;
+}
+.classInfo .clsHot .clsHot-clsInfo,.classInfo .clsHot .clsHot-hotlist{
+	border: 1px solid #ecebeb;
+}
+.classInfo .clsHot .clsHot-clsInfo h2,.classInfo .clsHot .clsHot-hotlist h2{
+	padding: 20px;
+	font-size: 16px;
+	font-weight: normal;
+	color: #333333;
+	border-bottom: 1px solid #ddd;
+	padding-bottom: 20px;
+}
+.classInfo .clsHot .clsHot-clsInfo img{
+	padding:0 20px;
+	padding-bottom: 20px;
+	display: block;
+}
+.classInfo .clsHot .clsHot-clsInfo p{
+	padding: 20px;
+	font-size: 14px;
+	color: #666666;
+	padding-top:20px;
+	padding-bottom: 5px;
+}
+.classInfo .clsHot .clsHot-hotlist{
+	margin-top: 20px;
+}
+.classInfo .clsHot .clsHot-hotlist ul{
+	padding: 20px;
+	padding-top: 0;
+}
+
+.classInfo .clsHot .clsHot-hotlist .clsHot-hotView{
+	overflow: hidden;
+	height: 720px;
+	
+}
+ .ie11 .classInfo .clsHot .clsHot-hotlist .clsHot-hotView{
+ 	height:755px;
+ }
+.classInfo .clsHot .clsHot-hotlist .clsHot-hotView ul li{
+	margin-top: 20px;
+}
+
+.classInfo .clsHot .clsHot-hotlist .clsHot-hotView ul li img{
+	float: left;
+	margin-right: 10px;
+}
+.classInfo .clsHot .clsHot-hotlist .clsHot-hotView ul li p{
+	overflow: hidden;
+	margin-bottom: 10px;
+}
+.classInfo .clsHot .clsHot-hotlist .clsHot-hotView ul li .Hotlist-title{
+	width: 120px;
+	font-size: 14px;
+	color: #333333;
+	white-space: nowrap;
+	text-overflow:ellipsis;
+}
+.classInfo .clsHot .clsHot-hotlist .clsHot-hotView ul li .Hotlist-user{
+	font-size: 12px;
+	color: #9f9999;
+	background: url(img/spring.png) no-repeat -283px 2px;
+	padding-left: 15px;
+}
+.footer{
+	padding-top: 95px;
+	padding-bottom: 80px;
+	background: #2c3339;
+	margin-top: 120px;
+	overflow: hidden;
+}
+.footerIntro  p{
+	margin-top: 10px;
+	color:#a2a4a5;
+	font-size: 12.5px;
+}
+.footerIntro .footerLogo{
+	float: left;
+	margin-right: 75px;
+}
+.footerIntro .footerLogo img{
+	margin-bottom: 15px;
+}
+.footerIntro  ul{
+	float: left;
+	margin-left: 75px;
+}
+.footerIntro  ul li{
+	display: block;
+	margin-top: 10px;
+}
+.footerIntro  ul li:first-child>a{
+	font-size: 12.5px;
+}
+.footerIntro  ul li a{
+	text-decoration: none;
+	color:#a2a4a5;
+	font-size: 14.58px;
+}
+.footerIntro  ul li a:hover{
+	text-decoration: underline;
+}
+.footerIntro  ul li .sina{
+	display: inline-block;
+	width: 20px;
+	height: 20px;
+	background: url(img/spring.png) no-repeat -59px -50px;
+	margin-left: 10px;
+	vertical-align: text-bottom;
+}
+
+
+
+
+
+
+
