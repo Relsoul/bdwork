@@ -2,7 +2,7 @@
  * Created by soul on 15-12-4.
  */
 
-//引入required模块
+//引入request模块
 var superagent=require("superagent");
 //引入async并发模块
 var async=require("async");

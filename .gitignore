@@ -2,7 +2,14 @@
 Thumbs.db
 db.json
 *.log
+*.~
+*/.idea
+*/*/.idea
+*/*/*/.idea
+*/*/*/*/.idea
 */*/node_modules/
+*/*/*/node_modules/
+*/*/*/*/node_modules/
 */*/*/node_modules/
 */*/*/*/node_modules/
 public/

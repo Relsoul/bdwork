@@ -1,0 +1,22 @@
+{
+  "name": "imooc",
+  "description": "",
+  "main": "app.js",
+  "authors": [
+    "relsoul <admin@emufan.com>"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/Relsoul/bdwork",
+  "moduleType": [],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "public/libs",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.3.6"
+  }
+}
