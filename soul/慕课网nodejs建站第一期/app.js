@@ -81,7 +81,6 @@ app.get("/admin/update/:id",function(req,res){
 
 //admin post movie
 app.post("/admin/movie/new", function (req, res) {
-    console.log(req.body)
     var id = req.body.movie._id;
     var movieObj = req.body.movie;
     var _movie
