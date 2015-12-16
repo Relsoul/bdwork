@@ -20,7 +20,6 @@ exports.showSignin = function (req, res) {
 //sign up
 exports.signup = function (req, res) {
     var _user = req.body.user;
-    var user = new User(_user);
     User.findOne({name: _user.name}, function (err, user) {
         if (err) {
             console.log(err)
@@ -28,7 +27,8 @@ exports.signup = function (req, res) {
         if (user) {
             return res.redirect("/signin")
         } else {
-            user.save(function (err, user) {
+            var users = new User(_user);
+            users.save(function (err, user) {
                 if (err) {
                     console.log(err)
                 }

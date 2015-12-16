@@ -54,7 +54,6 @@ UserSchema.pre("save",function(next){
             next()
         })
     });
-    console.log(50)
 });
 
 
