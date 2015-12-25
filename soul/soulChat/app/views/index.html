@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="soulChat">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>hello world</title>
+    <link rel="stylesheet" href="libs/bootstrap/dist/css/bootstrap.css"/>
+    <link rel="stylesheet" href="css/style.css"/>
+    <script src="libs/angular/angular.min.js"></script>
+    <script src="libs/jquery/dist/jquery.min.js"></script>
+    <script src="libs/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="libs/angular-ui-router/release/angular-ui-router.min.js"></script>
+    <script src="js/jquery.particleground.min.js"></script>
+    <script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>
+</head>
+<body>
+<div ng-include="'header.html'"></div>
+<div ui-view>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-12">
+                <div snow class="snow">
+                    <div class="row snow-row">
+                        <div class="col-sm-6 col-sm-offset-3 ">
+                            <div class="snow-hello">
+                                <reg></reg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div ng-include="'footer.html'"></div>
+<script src="js/soulChat.js"></script>
+</body>
+</html>
