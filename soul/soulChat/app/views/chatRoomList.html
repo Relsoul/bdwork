@@ -1,0 +1,10 @@
+<div class="container">
+    <div class="panel panel-default">
+        <div class="panel-heading">房间列表</div>
+        <div class="panel-body">
+            <ul class="list-group">
+                <li class="list-group-item" ng-repeat="room in rooms" ng-click="goRoom(room._id)" style="cursor: pointer">{{room.name}}</li>
+            </ul>
+        </div>
+    </div>
+</div>

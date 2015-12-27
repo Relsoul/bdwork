@@ -11,9 +11,15 @@ var mongoStore=require("connect-mongo")(Esession);
 var bodyParser=require("body-parser");
 var morgan=require("morgan");
 var app=express();
-
 var dbUrl="mongodb://localhost:27017/soulChat";
+var sessionStore=new mongoStore({
+    url:dbUrl,
+    collection:"sessions"
+});
+
+
 mongoose.connect(dbUrl);
+
 //设置中间件
 app.use(express.static(path.join(__dirname,"public")))
 app.use(express.static(path.join(__dirname,"app/views")))
@@ -22,10 +28,8 @@ app.use(bodyParser.urlencoded({extended:true}));
 app.use(cookieParser());
 app.use(Esession({
     secret:"soulChat",
-    store:new mongoStore({
-        url:dbUrl,
-        collection:"sessions"
-    }),
+    cookie: { httpOnly: false },
+    store:sessionStore,
     resave:false,
     saveUninitialized:false
 }));
@@ -43,6 +47,9 @@ console.log("running"+port);
 
 //路由
 require("./config/RESTful")(app,io);
+
+//socket
+require("./config/socket")(app,io)
 
 
 

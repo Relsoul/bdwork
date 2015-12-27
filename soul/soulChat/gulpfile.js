@@ -16,7 +16,7 @@ var jsPath={
 
 var reloadMain="app.js"
 
-gulp.task("default",["sass:watch","autoReload","concat:watch","htmlReload:watch"]);
+gulp.task("default",["sass:watch","autoReload","concat:watch"]);
 
 gulp.task("htmlReload:watch",function(){
     p.livereload.listen()

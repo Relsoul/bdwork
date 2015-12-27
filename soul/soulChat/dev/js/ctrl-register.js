@@ -7,7 +7,7 @@ app.directive("reg", function () {
         templateUrl: "register.html",
         controller: function ($scope) {
             $scope.hello = "hello"
-            $scope.name_info="ÇëÊäÈëÓÃ»§Ãû"
+            $scope.name_info="è¯·è¾“å…¥ç”¨æˆ·åï¼Œé•¿åº¦2-16ä½"
         }
     }
 })
@@ -32,8 +32,7 @@ app.directive("ensureUnique", function ($http, $timeout, $window) {
                     })
                         .success(function (data) {
                             ngModelController.$setValidity("unique", data.isUnique)
-                            scope.name_info="ÓÃ»§Ãû"
-
+                            scope.name_info=data.name_info
                          })
                 }, 500)
             })

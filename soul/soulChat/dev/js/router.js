@@ -6,6 +6,25 @@ app.config(function($stateProvider,$urlRouterProvider){
     $stateProvider
         .state("login",{
             url:"/login",
-            templateUrl:"login.html"
+            templateUrl:"login.html",
+            controller:login
+        })
+        .state("index",{
+            url:"/",
+        })
+        .state("chat",{
+            url:"/chat/:roomId",
+            templateUrl:"chatIndex.html",
+            controller:chat
+        })
+        .state("chatAdmin",{
+            url:"/chatAdmin",
+            templateUrl:"chatRoomAdmin.html",
+            controller:chatAdmin
+        })
+        .state("chatList",{
+            url:"/chatList",
+            templateUrl:"chatRoomList.html",
+            controller:chatList
         })
 })

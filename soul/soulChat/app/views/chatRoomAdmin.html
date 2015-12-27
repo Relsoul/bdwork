@@ -1,0 +1,16 @@
+<div class="container">
+    <div class="panel panel-default">
+        <div class="panel-heading">后台新建房间</div>
+        <div class="panel-body">
+            <p class="text-info">{{room_info}}</p>
+            <ul class="list-group">
+                <li class="list-group-item" ng-repeat="room in rooms">{{room.name}} <span class="glyphicon glyphicon-remove pull-right" style="cursor: pointer" ng-click="removeRoom(room.name)"></span></li>
+            </ul>
+            <div class="input-group">
+                <span class="input-group-addon" id="basic-addon1">新增</span>
+                <input type="text" class="form-control" placeholder="Username" aria-describedby="basic-addon1" ng-model="add_room">
+                <button class="btn btn-default" ng-click="newRoom()">提交</button>
+            </div>
+        </div>
+    </div>
+</div>

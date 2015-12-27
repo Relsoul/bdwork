@@ -19,6 +19,7 @@
   "dependencies": {
     "bootstrap": "~3.3.6",
     "requirejs": "~2.1.22",
-    "angular-ui-router": "~0.2.15"
+    "angular-ui-router": "~0.2.15",
+    "angular-cookies": "~1.4.8"
   }
 }

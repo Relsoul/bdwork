@@ -11,11 +11,12 @@
     <script src="libs/bootstrap/dist/js/bootstrap.js"></script>
     <script src="/socket.io/socket.io.js"></script>
     <script src="libs/angular-ui-router/release/angular-ui-router.min.js"></script>
+    <script src="libs/angular-cookies/angular-cookies.min.js"></script>
     <script src="js/jquery.particleground.min.js"></script>
     <script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>
 </head>
 <body>
-<div ng-include="'header.html'"></div>
+<div ng-include="'header.html'" ng-controller="header" class="header"></div>
 <div ui-view>
     <div class="container-fluid">
         <div class="row">
@@ -33,7 +34,7 @@
         </div>
     </div>
 </div>
-<div ng-include="'footer.html'"></div>
+<div ng-include="'footer.html'" ng-controller="footer"></div>
 <script src="js/soulChat.js"></script>
 </body>
 </html>
