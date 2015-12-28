@@ -3,7 +3,7 @@
         <div class="panel-heading">房间列表</div>
         <div class="panel-body">
             <ul class="list-group">
-                <li class="list-group-item" ng-repeat="room in rooms" ng-click="goRoom(room._id)" style="cursor: pointer">{{room.name}}</li>
+                <li class="list-group-item" ng-repeat="room in rooms_config" ng-click="goRoom(room.roomId)" style="cursor: pointer">{{room.roomname}}-{{room.user.length}}</li>
             </ul>
         </div>
     </div>

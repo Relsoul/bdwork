@@ -6,6 +6,7 @@ var mongoose=require("mongoose");
 var user_model=require("../app/models/user");
 var message_model=require("../app/models/message");
 var room_model=require("../app/models/room");
+var socketApi=require("./socketApi")
 
 
 module.exports=function(app,io) {
@@ -35,43 +36,20 @@ module.exports=function(app,io) {
 
     io.sockets.on("connection", function (socket) {
 
+        /*
+        *
+        * .action:动作
+        * .data:附加数据
+        *
+        *
+        * */
+        socket.on("soulChat",function(request){
+            console.log(40,request)
+            socketApi[request.action](request.data,socket,io)
+        })
+
         //获取用户session
         var _name=socket.request.session.user.name;
-
-        //获取房间人数
-        socket.on("rooms.read",function(roomId){
-
-        })
-
-
-
-
-
-
-        //加入房间
-        /*
-        * name:用户名
-        * roomId:房间Id
-        * */
-        socket.on("joinRoom",function(join){
-            user_model.joinRoom(join,function(err){
-                if(err){
-                    socket.emit("err",{
-                        megs:err
-                    })
-                }else{
-                    socket.join(join.roomId)
-                    socket.emit('users.join' + join.name, join)
-                    socket.to(join.roomId).broadcast.emit('messages.add', {
-                        content: join.name + '进入了聊天室',
-                    })
-                    socket.to(join.name)
-                    socket.to(join.roomId).broadcast.emit('users.join', join)
-                }
-            })
-        })
-
-
 
 
     })

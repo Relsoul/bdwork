@@ -10,10 +10,16 @@
                 </div>
                 <div class="panel-body">
                     <ul class="list-group">
-                        <li class="list-group-item">{{now_peoples}}</li>
+                        <li class="list-group-item" ng-repeat="people in room.user ">{{people.username}}</li>
                     </ul>
                 </div>
             </div>
+        </div>
+        <div class="col-sm-4">
+            <ul class="list-group">
+                <li class="list-group-item" ng-repeat="mes in room.message | orderBy:'+createAt'  ">name:{{mes.user.name}}-{{mes.content}}-{{mes.createAt| date:'yyyy-MM-dd HH:mm:ss '}}</li>
+            </ul>
+            <input type="text" ng-model="send_message"/> <button ng-click="sendMessage()" class="btn btn-default">发送</button>
         </div>
     </div>
 

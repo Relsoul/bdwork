@@ -12,6 +12,9 @@ var RoomSchema=new Schema({
 
 
 RoomSchema.statics={
+    getRooms:function(cb){
+        return this.find({}).exec(cb)
+    }
 
 }
 

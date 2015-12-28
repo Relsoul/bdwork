@@ -2,6 +2,9 @@
  * Created by soul on 2015/12/24.
  */
 var user_model=require("../models/user");
+var mongoose=require("mongoose");
+var Schema=mongoose.Schema,
+    ObjectId=Schema.Types.ObjectId
 
 exports.signUp=function(req,res){
     var _user=req.body.reg;
@@ -17,6 +20,7 @@ exports.signUp=function(req,res){
             return res.json(400,{"err":"用户名已经存在"})
         }else{
             var users=new user_model(_user);
+            //users._roomId="567ed27b9a39bc4041a3e95c"
             console.log(users)
             users.save(function(err,_users){
                 if(err){
@@ -88,7 +92,8 @@ exports.getName=function(req,res){
         res.json({
             isSession:true,
             _id:req.session.user._id,
-            name:req.session.user.name
+            name:req.session.user.name,
+            roomId:req.session.user._roomId
         })
     }else{
         res.json({

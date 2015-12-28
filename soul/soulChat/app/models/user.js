@@ -5,7 +5,11 @@ var mongoose=require("mongoose");
 var bcrypt=require("bcrypt");
 var pskey=10;
 var Schema=mongoose.Schema,
-    ObjectId=Schema.ObjectId
+    ObjectId=Schema.Types.ObjectId
+
+/*var rooms_config=[{
+    room_id:[user]
+}]*/
 var UserSchema=new mongoose.Schema({
     name:{
         unique:true,
@@ -14,7 +18,7 @@ var UserSchema=new mongoose.Schema({
         min:2,
         max:16
     },
-    _roomId:ObjectId,
+    _roomId:{type:ObjectId,default:"567ed27b9a39bc4041a3e95c",ref:"Room"},
     online:Boolean,
     avatarUrl:String,
     password:{
@@ -99,7 +103,13 @@ UserSchema.statics={
         }).exec(cb)
     },
     joinRoom:function(join,cb){
-        return this.findOneAndUpdate({id:join._id},{$set:{online:true,_roomId:join.roomId}}).exec(cb)
+        return this.update({_id:join.userId},{$set:{online:true,_roomId:join.roomId}}).exec(cb)
+    },
+    getRoom:function(roomId,cb){
+        return this.find({_roomId:roomId,online:true}).exec(cb)
+    },
+    getUserRooms:function(cb){
+        return this.find({online:true}).populate("_roomId").exec(cb)
     }
 }
 
