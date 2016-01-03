@@ -15,8 +15,8 @@ MessageSchema.statics = {
     getRoomMessages: function (roomId, cb) {
         return this.find({_roomId: roomId})
             .populate([
-                {path: "_roomId", select: "_id name"},
-                {path: "user", select: "_id name"}
+                {path: "_roomId", select: "_id name avatarUrl"},
+                {path: "user", select: "_id name avatarUrl"}
             ])
             .sort("-createAt")
             .limit(15)
@@ -29,8 +29,8 @@ MessageSchema.methods = {
         return this.model("message")
             .find({_id: messageId})
             .populate([
-                {path: "_roomId", select: "_id name"},
-                {path: "user", select: "_id name"}
+                {path: "_roomId", select: "_id name avatarUrl"},
+                {path: "user", select: "_id name avatarUrl"}
             ])
             .exec(cb)
     }

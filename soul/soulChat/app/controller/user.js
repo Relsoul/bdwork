@@ -93,7 +93,8 @@ exports.getName=function(req,res){
             isSession:true,
             _id:req.session.user._id,
             name:req.session.user.name,
-            roomId:req.session.user._roomId
+            roomId:req.session.user._roomId,
+            role:req.session.user.role
         })
     }else{
         res.json({

@@ -20,7 +20,7 @@ var sessionStore=new mongoStore({
 
 mongoose.connect(dbUrl);
 
-//ÉèÖÃÖĞ¼ä¼ş
+//é™æ€èµ„æº
 app.use(express.static(path.join(__dirname,"public")))
 app.use(express.static(path.join(__dirname,"app/views")))
 app.use(bodyParser.json());
@@ -33,7 +33,7 @@ app.use(Esession({
     resave:false,
     saveUninitialized:false
 }));
-//ÅĞ¶Ï»·¾³
+//ç¯å¢ƒå˜é‡
 if(app.get("env")=="development"){
     app.set("showStackError",true);
     app.use(morgan(":method :url :status"))
@@ -45,7 +45,7 @@ if(app.get("env")=="development"){
 var io=require("socket.io").listen(app.listen(port));
 console.log("running"+port);
 
-//Â·ÓÉ
+//API
 require("./config/RESTful")(app,io);
 
 //socket

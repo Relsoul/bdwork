@@ -27,4 +27,9 @@ app.config(function($stateProvider,$urlRouterProvider){
             templateUrl:"chatRoomList.html",
             controller:chatList
         })
+        .state("error",{
+            url:"/error",
+            templateUrl:"error.html",
+            controller:chatError
+        })
 })

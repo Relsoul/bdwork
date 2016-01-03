@@ -1,0 +1,31 @@
+<div class="music-play">
+    <p>{{now_music.name}}</p>
+    <audio class="music_audio" ng-src="{{now_music.src}}"></audio>
+    <div class="bar " style="width: 100%">
+        <span class="bar-bg">
+            <span class="bar-on music-play-progress"></span>
+        </span>
+    </div>
+    <div class="music-play-ctrl">
+        <div class="btn-group">
+            <button class="btn btn-default" ng-click="musicPref()">
+                <span class="glyphicon glyphicon glyphicon-step-backward"></span>
+            </button>
+            <button class="btn btn-default" ng-click="musicPlay()">
+                <span class="glyphicon " ng-class="playClass?'glyphicon-pause':'glyphicon-play'"></span>
+            </button>
+            <button class="btn btn-default" ng-click="musicNext()">
+                <span class="glyphicon glyphicon glyphicon-step-forward"></span>
+            </button>
+        </div>
+    </div>
+</div>
+
+<ul class="list-group roomNumber">
+    <li class="list-group-item " ng-repeat="music in music_list ">
+        <div class="row">
+            <div class="col-sm-7" ng-click="play(music)" ng-class="now_music==music?'now_play':'ttt' ">{{music.name}}
+            </div>
+        </div>
+    </li>
+</ul>

@@ -2,13 +2,13 @@
  * Created by soul on 2015/12/26.
  */
 
-app.directive('ctrlEnterBreakLine', function() {
-    return function(scope, element, attrs) {
+app.directive('ctrlEnterBreakLine', function () {
+    return function (scope, element, attrs) {
         var ctrlDown = false
-        element.bind("keydown", function(evt) {
+        element.bind("keydown", function (evt) {
             if (evt.which === 17) {
                 ctrlDown = true
-                setTimeout(function() {
+                setTimeout(function () {
                     ctrlDown = false
                 }, 1000)
             }
@@ -16,7 +16,7 @@ app.directive('ctrlEnterBreakLine', function() {
                 if (ctrlDown) {
                     element.val(element.val() + '\n')
                 } else {
-                    scope.$apply(function() {
+                    scope.$apply(function () {
                         scope.$eval(attrs.ctrlEnterBreakLine);
                     });
                     evt.preventDefault()
@@ -27,35 +27,57 @@ app.directive('ctrlEnterBreakLine', function() {
 });
 
 
+function chat($scope, $http, $cookies, socket, $stateParams, server, $rootScope, $state,addMusic,checkLogin,$sce) {
 
-function chat($scope,$http,$cookies,socket,$stateParams,server,$rootScope,$state){
-        if(!$rootScope.session_user["_id"]){
-            return $state.go("login")
-        }
-        //console.log(33,newValue, oldValue)
-            server.joinRoom({
-                userId:$rootScope.session_user["_id"],
-                username:$rootScope.session_user["name"],
-                roomId:$stateParams.roomId
-            })
-            $scope.room=server.getRoom($stateParams.roomId)
+    console.log("chatIndex rootscope",$rootScope)
+    //判断是否登陆
+    checkLogin(1500,0,null,function(){
+        $state.go("login")
+    })
 
-
-
-
-    $scope.sendMessage=function(){
-        var _content=$scope.send_message
-        server.sendMessage({
-            userId:$rootScope.session_user["_id"],
-            username:$rootScope.session_user["name"],
-            roomId:$stateParams.roomId,
-            content:_content
-        })
-        $scope.send_message=""
+    //无
+    if(!$stateParams.roomId){
+        $state.go("login")
     }
 
 
+    //获取当前房间信息
+    $scope.room = server.getRoom($stateParams.roomId)
 
+    server.joinRoom({
+        userId: $rootScope.session_user["_id"],
+        username: $rootScope.session_user["name"],
+        roomId: $stateParams.roomId
+    })
+
+
+
+
+    //发送消息
+    $scope.sendMessage = function () {
+        var _content = $scope.send_message
+        server.sendMessage({
+            userId: $rootScope.session_user["_id"],
+            username: $rootScope.session_user["name"],
+            roomId: $stateParams.roomId,
+            content: _content
+        })
+        $scope.send_message = ""
+    }
+
+    //添加音乐
+
+
+    $scope.addMusic = function () {
+        var musicuid=$scope.add_music_uid
+       server.addMusic({
+           username:$rootScope.session_user["name"],
+           roomId: $stateParams.roomId,
+           music:musicuid
+       })
+        $scope.add_music_uid=""
+        $scope.add_music=false
+    }
 
 
 }

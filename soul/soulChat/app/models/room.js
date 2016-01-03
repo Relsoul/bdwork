@@ -6,6 +6,7 @@ var Schema=mongoose.Schema,
     ObjectId=Schema.ObjectId
 var RoomSchema=new Schema({
     name:{type:String,unique:true},
+    music:[{type:ObjectId,ref:"Music"}],
     createAt:{type: Date, default: Date.now}
 })
 
@@ -14,6 +15,10 @@ var RoomSchema=new Schema({
 RoomSchema.statics={
     getRooms:function(cb){
         return this.find({}).exec(cb)
+    },
+    getMusics:function(roomId,cb){
+        return this.findOne({_id:roomId}).populate("music").exec(cb)
+
     }
 
 }

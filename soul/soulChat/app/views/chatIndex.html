@@ -9,17 +9,89 @@
                     <h3 class="panel-title">房间人数</h3>
                 </div>
                 <div class="panel-body">
-                    <ul class="list-group">
-                        <li class="list-group-item" ng-repeat="people in room.user ">{{people.username}}</li>
+                    <ul class="list-group roomNumber">
+                        <li class="list-group-item " ng-repeat="people in room.user ">
+                            <div class="row">
+                                <div class="col-sm-5"><img class="img-responsive" ng-src=" {{people.avatarUrl}} "
+                                                           alt=""/></div>
+                                <div class="col-sm-7">{{people.username}}</div>
+                            </div>
+                        </li>
                     </ul>
                 </div>
             </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">房间音乐</h3>
+                </div>
+                <div class="panel-body">
+                    <music-player room="room"></music-player>
+                </div>
+            </div>
         </div>
-        <div class="col-sm-4">
-            <ul class="list-group">
-                <li class="list-group-item" ng-repeat="mes in room.message | orderBy:'+createAt'  ">name:{{mes.user.name}}-{{mes.content}}-{{mes.createAt| date:'yyyy-MM-dd HH:mm:ss '}}</li>
-            </ul>
-            <input type="text" ng-model="send_message"/> <button ng-click="sendMessage()" class="btn btn-default">发送</button>
+        <div class="col-sm-10 chatContent">
+            <div class="chatContent-message">
+                <ul class="list-group">
+                    <li class="list-group-item clearfix"
+                        ng-repeat="mes in room.message  | orderBy:'+createAt' |  limitTo:-15">
+                        <div ng-switch on="mes.user.name==session_user.name">
+                            <div ng-switch-when="true" class="row">
+                                <div class="col-xs-4 col-xs-offset-5 text-right">
+                                    <img ng-src="{{mes.content_img}}" alt="" class="img-responsive"/>
+                                    <p class="text-right">{{mes.content}}</p>
+                                </div>
+                                <div class="col-xs-3 col-sm-1">
+                                    <img class="img-responsive" width="50" height="50" ng-src=" {{mes.user.avatarUrl}} "
+                                         alt=""/>
+
+                                    <p class="message_time">{{mes.user.name}}<br>
+                                        {{mes.createAt| date:'MM-dd HH:mm:ss '}}</p>
+                                </div>
+                            </div>
+                            <div ng-switch-default>
+                                <div class="col-xs-3 col-sm-1">
+                                    <img class="img-responsive" width="50" height="50" ng-src=" {{mes.user.avatarUrl}} "
+                                         alt=""/>
+                                    <p class="message_time">{{mes.user.name}}<br>
+                                        {{mes.createAt| date:'MM-dd HH:mm:ss '}}</p>
+                                </div>
+                                <div class="col-xs-9 text-left">
+                                    {{mes.content}}
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="panel panel-default" ng-show="add_music">
+                        <div class="panel-body">
+                            <p>歌曲名称:{{add_music_name}}</p>
+                            <p>目前仅仅支持网易云,请输入网易云歌曲ID如 <code>http://music.163.com/#/song?id=33599403</code> 仅仅只需要输入<code>33599403</code></p>
+                            <div class="input-group">
+                                <input type="text" ng-model="add_music_uid" class="form-control"/>
+                                <span class="input-group-btn">
+                                     <button ng-click="addMusic()" class="btn btn-default">确认添加</button>
+                                    <button ng-click="add_music=false" class="btn btn-default">关闭</button>
+                              </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="btn-group" role="group" aria-label="...">
+                        <button type="button" class="btn btn-default" ng-click="add_music=true">添加音乐</button>
+                    </div>
+                    <div class="input-group">
+                        <input type="text" ng-model="send_message" class="form-control"/>
+                    <span class="input-group-btn">
+                         <button ng-click="sendMessage()" class="btn btn-default">发送</button>
+                  </span>
+                    </div>
+                </div>
+
+            </div>
+
+
         </div>
     </div>
 

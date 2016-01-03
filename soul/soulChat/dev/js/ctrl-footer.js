@@ -9,8 +9,8 @@ app.controller("footer",function($scope,$rootScope,$cookies,$http,$state){
         })
             .success(function(data){
                 if(data.isLogout){
-                    $rootScope.isSession=null;
-                    $rootScope.session_user=null;
+                    $rootScope.isSession=false;
+                    $rootScope.session_user={};
                     $cookies.remove("connect.sid")
                     $state.go("index")
                 }

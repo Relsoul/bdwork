@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="Encoding" defaultCharsetForPropertiesFiles="UTF-8">
+    <file url="file://$PROJECT_DIR$/app.js" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/app/controller/user.js" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/app/models/user.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/dev/css/style.scss" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/dev/js/ctrl-register.js" charset="UTF-8" />
     <file url="PROJECT" charset="UTF-8" />
   </component>
