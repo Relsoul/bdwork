@@ -18,7 +18,7 @@ var UserSchema=new mongoose.Schema({
         min:2,
         max:16
     },
-    _roomId:{type:ObjectId,default:"5683fee6f7aa03584a2adbb9",ref:"Room"},
+    _roomId:{type:ObjectId,default:"56896be6a43fa3e02695c019",ref:"Room"},
     online:Boolean,
     avatarUrl:{type:String,default:"http://www.cssxn.com/fzl/tupian/201501/2015011412373426.jpg"},
     password:{
@@ -80,6 +80,7 @@ UserSchema.methods={
             if(err){
                 return cb(err)
             }
+            console.log("pw",isMatch)
             cb(null,isMatch)
         })
     }

@@ -50,6 +50,8 @@ app.factory("server",function($rootScope,socket,$cacheFactory,$interval,$state,$
 
                 console.log("musid data",_data)
                 console.log("music get room id",cache.get(roomId))
+                break
+
 
         }
     })
@@ -118,7 +120,12 @@ app.factory("server",function($rootScope,socket,$cacheFactory,$interval,$state,$
                 action:"addMusic",
                 data:addMusic
             })
-
+        },
+        offLine:function(userId){
+            socket.emit("soulChat",{
+                action:"offLine",
+                data:userId
+            })
         }
     }
 })

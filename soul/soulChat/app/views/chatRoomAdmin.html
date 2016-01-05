@@ -3,14 +3,40 @@
         <div class="panel-heading">后台新建房间</div>
         <div class="panel-body">
             <p class="text-info">{{room_info}}</p>
-            <ul class="list-group">
-                <li class="list-group-item" ng-repeat="room in rooms">{{room.name}} <span class="glyphicon glyphicon-remove pull-right" style="cursor: pointer" ng-click="removeRoom(room.name)"></span></li>
+            <ul class="list-group" ng-repeat="category in categorys">
+                <h3>{{category.name}} <span class="glyphicon glyphicon-remove pull-right" style="cursor: pointer" ng-click="removeCategory(category)"></span></h3>
+                <li class="list-group-item" ng-repeat="room in category.rooms">
+                    {{room.name}}
+                    <button class="btn btn-default" ui-sref="chatAdminDetail({id:room._id})">修改信息</button>
+                    <span class="glyphicon glyphicon-remove pull-right" style="cursor: pointer" ng-click="removeRoom(room._id,category._id)"></span>
+                </li>
             </ul>
-            <div class="input-group">
-                <span class="input-group-addon" id="basic-addon1">新增</span>
-                <input type="text" class="form-control" placeholder="Username" aria-describedby="basic-addon1" ng-model="add_room">
-                <button class="btn btn-default" ng-click="newRoom()">提交</button>
-            </div>
+            <form class="form-horizontal">
+                <div class="form-group">
+                    <label for="choice_category" class="control-label col-xs-2" >选择分类(添加分类优先)</label>
+                    <div class="col-xs-4">
+                        <select  id="choice_category" class="form-control" ng-model="choice_category">
+                            <option value="">---Please select---</option> <!-- not selected / blank option -->
+                            <option ng-value="category._id"  ng-repeat="category in categorys">{{category.name}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="add_category" class="col-xs-2 control-label">添加分类</label>
+                    <div class="col-xs-4">
+                        <input type="text" class="form-control" ng-model="add_category" id="add_category"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="add_room" class="col-xs-2 control-label">添加房间</label>
+                    <div class="col-xs-4">
+                        <input type="text" class="form-control" ng-model="add_room" id="add_room"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-default col-xs-2 col-xs-offset-3" ng-click="newRoom()">提交</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>

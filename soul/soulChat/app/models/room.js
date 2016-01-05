@@ -5,8 +5,13 @@ var mongoose=require("mongoose");
 var Schema=mongoose.Schema,
     ObjectId=Schema.ObjectId
 var RoomSchema=new Schema({
-    name:{type:String,unique:true},
+    name:{type:String},
     music:[{type:ObjectId,ref:"Music"}],
+    backgroundImg:[{
+        name:String,
+        url:String
+    }],
+    sid:{type:Number,default:0},
     createAt:{type: Date, default: Date.now}
 })
 
@@ -18,9 +23,7 @@ RoomSchema.statics={
     },
     getMusics:function(roomId,cb){
         return this.findOne({_id:roomId}).populate("music").exec(cb)
-
     }
-
 }
 
 

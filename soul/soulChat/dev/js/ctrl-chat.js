@@ -38,6 +38,7 @@ function chat($scope, $http, $cookies, socket, $stateParams, server, $rootScope,
     //无
     if(!$stateParams.roomId){
         $state.go("login")
+        return false
     }
 
 

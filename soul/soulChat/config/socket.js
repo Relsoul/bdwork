@@ -49,7 +49,7 @@ module.exports=function(app,io) {
         })
 
         //获取用户session
-        var _name=socket.request.session.user.name;
+        //var _name=socket.request.session.user.name;
 
 
     })

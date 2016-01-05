@@ -15,6 +15,7 @@ app.config(function($stateProvider,$urlRouterProvider){
         .state("chat",{
             url:"/chat/:roomId",
             templateUrl:"chatIndex.html",
+            cache:false,
             controller:chat
         })
         .state("chatAdmin",{
@@ -31,5 +32,10 @@ app.config(function($stateProvider,$urlRouterProvider){
             url:"/error",
             templateUrl:"error.html",
             controller:chatError
+        })
+        .state("chatAdminDetail",{
+            url:"/chatAdmin/:id",
+            templateUrl:"chatRoomAdmin-detail.html",
+            controller:chatAdminDetail
         })
 })

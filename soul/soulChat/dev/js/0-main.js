@@ -3,7 +3,7 @@
  */
 var app=angular.module("soulChat",["ui.router","ngCookies","ngSanitize"]);
 
-app.run(function($rootScope,$window,$cookies,$http,$state){
+app.run(function($rootScope,$window,$cookies,$http,$state,$templateCache){
     $rootScope.session_user={};
     $rootScope.rooms_config=null;
 
@@ -38,7 +38,5 @@ app.run(function($rootScope,$window,$cookies,$http,$state){
                 }else{
                 }
             }
-
     })
-
 })

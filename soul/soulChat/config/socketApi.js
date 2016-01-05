@@ -43,7 +43,29 @@ exports.getAllRooms = function (data, socket) {
                     console.log("get ALL rooms",users)
 
                     users.forEach(function(e,i){
-                        rooms_config[e._roomId._id].user.push({username: e.name,userId: e._id})
+                        if(!e._roomId){
+                            //不能采用save方式更新user 因为save方法会重新生成password
+                            user_model.update({_id: e._id},{$set:{ _roomId:"56896be6a43fa3e02695c019" }},function(err){
+                                if(err){
+                                    socket.emit("err",{
+                                        megs:err
+                                    })
+                                }else{
+                                    user_model.findOne({_id:e._id}).populate("_roomId").exec(function(err,user){
+                                        if(err) {
+                                            socket.emit("err", {
+                                                megs: err
+                                            })
+                                        }else{
+                                            rooms_config[user._roomId._id].user.push({username: e.name,userId: e._id})
+                                        }
+                                    })
+                                }
+
+                            })
+                        }else{
+                            rooms_config[e._roomId._id].user.push({username: e.name,userId: e._id})
+                        }
                     })
                     console.log(42,"getAllRooms")
                     socket.emit(onEvent,{
@@ -177,9 +199,18 @@ exports.joinRoom=function(join_user,socket){
         }
 
     })
-
-
 }
+
+exports.offLine=function(userId,socket,io){
+    console.log("off line")
+   user_model.offLine(userId,function(err,user){
+       console.log("off line")
+        if(err){
+         return console.log(err)
+        }
+   })
+}
+
 
 exports.addMusic=function(add_music,socket,io){
     var uid=add_music.music;
@@ -240,6 +271,4 @@ exports.addMusic=function(add_music,socket,io){
             })
         }
     })
-
-
 }
