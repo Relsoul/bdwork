@@ -6,8 +6,7 @@ app.factory("server",function($rootScope,socket,$cacheFactory,$interval,$state,$
     socket.on("soulChat",function(data){
         switch(data.action){
             case "getAllRooms":
-                angular.copy(data.data,cache.get("rooms_config"))
-                console.log("getAllRooms",cache.get("rooms_config"))
+                $rootScope.$broadcast("get_rooms",data.data)
                 break;
             case "getRoom":
                 var _data=data.data,
@@ -69,7 +68,6 @@ app.factory("server",function($rootScope,socket,$cacheFactory,$interval,$state,$
             socket.emit("soulChat",{
                 action:"getAllRooms"
             })
-            return cache.get("rooms_config")
         },
         /*
          *

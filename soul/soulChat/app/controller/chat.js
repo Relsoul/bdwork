@@ -183,6 +183,7 @@ exports.getRoomDetail=function(req,res){
                 _room_background=room.backgroundImg;
                 _room_name=room.name
                 _room_sid=room.sid
+                _room_id=room._id
                 res.json({
                     info: "获取内容成功",
                     isokay:true,
@@ -190,11 +191,86 @@ exports.getRoomDetail=function(req,res){
                     room_name:_room_name,
                     room_sid:_room_sid,
                     current_category:_current_category,
-                    categorys:_categorys
+                    categorys:_categorys,
+                    room_id:_room_id
                 })
             })
         })
     })
+}
+
+exports.changeRoomDetail=function(req,res){
+    var _change_roomId=req.params.id,
+        _change_category=req.body.change_category,
+        _change_room_background=req.body.change_room_background,
+        _change_room_name=req.body.change_room_name,
+        _change_room_id=req.body.change_room_id,
+        _change_room_sid=req.body.change_room_sid,
+        _change_old_category=req.body.change_old_category;
+
+    room_model.findOne({_id:_change_room_id},function(err,room){
+        if(err){
+            return res.json({
+                info: "更新失败"
+            })
+        }
+        room.name=_change_room_name;
+        room.sid=_change_room_sid;
+        room.backgroundImg=_change_room_background;
+        room.save(function(err){
+            if(err){
+                return res.json({
+                    info: "更新失败"
+                })
+            }
+            if(_change_old_category==_change_category){
+                console.log("227　分类相等不进行分类替换")
+                return res.json({
+                    info: "更新成功",
+                    isokay:true
+                })
+            }else{
+                category_model.update({_id:_change_old_category},
+                    {
+                        $pull:{
+                            rooms:{
+                                $in:[_change_room_id]
+                            }
+                        }
+                },function(err){
+                        if(err){
+                            return res.json({
+                                info: "更新失败",
+                            })
+                        }
+                        category_model.update({_id:_change_category},{
+                            $push:{
+                                rooms:_change_room_id
+                            }
+                        },function(err){
+                            if(err){
+                                return res.json({
+                                    info: "更新失败",
+                                })
+                            }
+                            res.json({
+                                info: "更新成功",
+                                isokay:true
+                            })
+                        })
+                })
+
+
+
+
+            }
+        })
+    })
+
+
+
+
+
 
 }
 

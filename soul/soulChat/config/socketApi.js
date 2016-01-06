@@ -7,76 +7,54 @@ var user_model = require("../app/models/user");
 var message_model = require("../app/models/message");
 var room_model = require("../app/models/room");
 var request=require("request");
-var music_model=require("../app/models/music")
+var music_model=require("../app/models/music");
+var category_model=require("../app/models/category")
 
 var onEvent="soulChat"
 
 
 exports.getAllRooms = function (data, socket) {
-        var rooms_config={}
-        //获取所有房间
-        room_model.getRooms(function(err,rooms){
-            if(err){
-                socket.emit("err",{
-                    megs:err
+        var rooms_config={
+            "categorys":[],
+            "users":[]
+        };
+    category_model.getCategorys(function(err,categorys){
+        if(err){
+            socket.emit("err",{
+                megs:err
+            })
+        }else{
+            categorys.forEach(function(e,i){
+                e.rooms.user=0;
+                rooms_config.categorys.push({
+                    "category_id": e._id,
+                    "category_name": e.name,
+                    "rooms": e.rooms
                 })
-            }else{
-                rooms.forEach(function(e,i){
-                    rooms_config[e._id]={};
-                    rooms_config[e._id].roomname= e.name;
-                    rooms_config[e._id].user=[];
-                    //roomId建立起对象索引
-                    rooms_config[e._id].roomId= e._id
-                })
-                user_model.getUserRooms(function(err,users){
-                    if(err){
-                        socket.emit("err",{
-                            megs:err
-                        })
-                    }
-                    if(!users){
-                        return socket.emit("onEvent",{
-                            action:"getAllRooms",
-                            data:rooms_config
-                        })
-                    }
-                    console.log("get ALL rooms",users)
-
-                    users.forEach(function(e,i){
-                        if(!e._roomId){
-                            //不能采用save方式更新user 因为save方法会重新生成password
-                            user_model.update({_id: e._id},{$set:{ _roomId:"56896be6a43fa3e02695c019" }},function(err){
-                                if(err){
-                                    socket.emit("err",{
-                                        megs:err
-                                    })
-                                }else{
-                                    user_model.findOne({_id:e._id}).populate("_roomId").exec(function(err,user){
-                                        if(err) {
-                                            socket.emit("err", {
-                                                megs: err
-                                            })
-                                        }else{
-                                            rooms_config[user._roomId._id].user.push({username: e.name,userId: e._id})
-                                        }
-                                    })
-                                }
-
-                            })
-                        }else{
-                            rooms_config[e._roomId._id].user.push({username: e.name,userId: e._id})
-                        }
+            })
+            user_model.find({online:true},function(err,users){
+                if(err){
+                    socket.emit("err",{
+                        megs:err
                     })
-                    console.log(42,"getAllRooms")
+                }else{
+                    //这里设计有点问题,放浏览器去处理,不加重服务端.
+                    users.forEach(function(e,i){
+                        rooms_config.users.push(
+                            {
+                                name: e.name,
+                                roomId: e._roomId
+                            }
+                        )
+                    })
                     socket.emit(onEvent,{
                         action:"getAllRooms",
                         data:rooms_config
                     })
-                })
-
-            }
-
-        })
+                }
+            })
+        }
+    })
 }
 
 exports.getRoom=function(data,socket){

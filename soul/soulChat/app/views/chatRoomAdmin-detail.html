@@ -2,6 +2,7 @@
     <p>{{room_info}}</p>
     <form class="form-horizontal">
         <div class="form-group">
+
             <label for="choice_category" class="control-label col-xs-2">更改分类</label>
             <div class="col-xs-4">
                 <select id="choice_category" class="form-control" ng-model="current_category">
@@ -14,6 +15,7 @@
         <div class="form-group">
             <label for="room_name" class="control-label col-xs-2">房间名字</label>
             <div class="col-xs-4">
+                <p>roomId:{{room_id}}</p>
                 <input type="text" id="room_name" class="form-control" ng-model="room_name"/>
             </div>
         </div>
@@ -28,11 +30,10 @@
             <div class="col-xs-4">
                 <button class="btn btn-default btn-group-xs" id="room_background" ng-click="room_background_show=!room_background_show">显示/关闭</button>
                 <ul class="list-group" ng-show="room_background_show">
-                    <li class="list-group-item">111</li>
                     <li class="list-group-item" ng-repeat="background in room_background">
                         <img ng-src="{{background.url}}" alt="" width="50" height="50"/>
                         <a href="{{background.url}}" target="_blank">查看原图</a>
-                        <span class="glyphicon glyphicon-remove pull-right" style="cursor: pointer" ng-click="removeBackground(background)"></span>
+                        <span class="glyphicon glyphicon-remove pull-right" style="cursor: pointer" ng-click="removeBackground(background,$index)"></span>
                     </li>
                 </ul>
             </div>
@@ -41,12 +42,15 @@
             <label for="add_room_background" class="col-xs-2 control-label">添加房间背景</label>
             <div class="col-xs-4">
                 <div class="input-group">
-                    <input type="text" id="add_room_background" class="form-control" ng-model="add_room_background"/>
+                    <input type="text" id="add_room_background" class="form-control" ng-model="add_room_background" placeholder="请填写url地址 如 http://xxx.com/1.jpg"/>
                     <span class="input-group-btn">
-                        <button class="btn btn-group-xs btn-default">添加</button>
+                        <button class="btn btn-group-xs btn-default" ng-click="addRoomBackground()">添加</button>
                     </span>
                 </div>
             </div>
+        </div>
+        <div class="form-group">
+            <button class="btn btn-default col-xs-1 col-xs-offset-3" ng-click="changeRoomDetail()">提交修改</button>
         </div>
     </form>
 

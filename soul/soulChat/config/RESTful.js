@@ -23,4 +23,5 @@ module.exports=function(app,io){
     app.delete("/api/removecategory/:id",user.adminRequired,user.loginRequired,chat.removeCategory)
     //符合
     app.get("/api/RoomDetail/:id",user.adminRequired,user.loginRequired,chat.getRoomDetail)
+    app.post("/api/RoomDetail/:id",user.adminRequired,user.loginRequired,chat.changeRoomDetail)
 }

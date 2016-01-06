@@ -39,3 +39,24 @@ CatetorySchema.statics={
 }
 
 module.exports=CatetorySchema
+
+var users={
+    [
+        {
+            _id:1,
+            name:"小明",
+            age:17,
+        },
+        {
+            _id:2,
+            name:"小红",
+            age:18,
+        },
+        {
+            _id:3,
+            name:"小黑",
+            age:17
+        }
+  ]
+
+}
