@@ -80,8 +80,9 @@ exports.getRoom=function(data,socket){
 
             room_model.getMusics(_roomId,function(err,room){
                 console.log(82,room)
-                data_config["music"]=room.music
-                data_config["name"]=room.name
+                data_config["music"]=room.music;
+                data_config["name"]=room.name;
+                data_config["background"]=room.backgroundImg||[];
                 message_model.getRoomMessages(_roomId,function(err,message){
                     if(err){
                         socket.emit("err",{
@@ -104,6 +105,7 @@ exports.getRoom=function(data,socket){
     })
 }
 
+//这里不应该这么写 有性能问题 不过这个坑占时不填
 exports.sendMessage=function(message,socket,io){
     var _message=new message_model({
         content:message.content,
@@ -249,4 +251,42 @@ exports.addMusic=function(add_music,socket,io){
             })
         }
     })
+}
+
+exports.addImg=function(add_img,socket,io){
+    var img_src=add_img.imgsrc,
+        userId=add_img.userId,
+        roomId=add_img.roomId;
+    var _message=new message_model({
+        content_img:img_src,
+        user:userId,
+        _roomId:roomId,
+    })
+    _message.save(function(err,messages){
+        if(err){
+            socket.emit("err",{
+                megs:err
+            })
+        }else{
+            messages.getMessageInfo(messages._id,function(err,returnmegs){
+                if(err){
+                    console.log(103,err)
+
+                }else{
+                    console.log(105,returnmegs)
+                    console.log("发送的房间为:"+roomId)
+
+                    io.sockets.to(roomId).emit(onEvent, {
+                        action: 'sendMessage',
+                        data: {
+                            "roomId":roomId,
+                            "message": returnmegs[0]
+                        }
+                    });
+                }
+            })
+        }
+
+    })
+
 }

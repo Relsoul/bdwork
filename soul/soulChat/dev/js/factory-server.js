@@ -15,6 +15,7 @@ app.factory("server",function($rootScope,socket,$cacheFactory,$interval,$state,$
                     _message=data.data.message,
                     _music= data.data.music,
                     _name=data.data.name;
+                    _background=data.data.background
                 _music=_music.map(function(n){
                     var _obj={}
                     _obj.name= n.name
@@ -25,14 +26,17 @@ app.factory("server",function($rootScope,socket,$cacheFactory,$interval,$state,$
                 cache.get(roomId).message=_message
                 cache.get(roomId).music=_music
                 cache.get(roomId).name=_name
+                cache.get(roomId).background=_background
+
                 console.log(cache.get(roomId),"roomID:",roomId)
                 $rootScope.$broadcast("musicList",true)
                 break;
-            case "sendMessage":
+            case "sendMessage"||"addImg":
                 var _data=data.data,
                     message=_data.message
                     roomId=_data.roomId
                 cache.get(roomId)["message"].push(message)
+                console.log("message",cache.get(roomId)["message"])
                 break
             case "addMusic":
                 var _data=data.data,
@@ -50,6 +54,7 @@ app.factory("server",function($rootScope,socket,$cacheFactory,$interval,$state,$
                 console.log("musid data",_data)
                 console.log("music get room id",cache.get(roomId))
                 break
+            case "addImg":
 
 
         }
@@ -124,6 +129,13 @@ app.factory("server",function($rootScope,socket,$cacheFactory,$interval,$state,$
                 action:"offLine",
                 data:userId
             })
+        },
+        addImg:function(addImg){
+            socket.emit("soulChat",{
+                action:"addImg",
+                data:addImg
+            })
+
         }
     }
 })

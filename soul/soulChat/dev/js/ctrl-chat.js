@@ -50,7 +50,14 @@ function chat($scope, $http, $cookies, socket, $stateParams, server, $rootScope,
 
     //获取当前房间信息
     $scope.room = server.getRoom($stateParams.roomId)
-    
+    setTimeout(function(){
+        console.log("now room info",$scope.room)
+
+    },2000)
+
+
+
+
 
 
 
@@ -72,8 +79,6 @@ function chat($scope, $http, $cookies, socket, $stateParams, server, $rootScope,
     }
 
     //添加音乐
-
-
     $scope.addMusic = function () {
         var musicuid=$scope.add_music_uid
        server.addMusic({
@@ -83,6 +88,18 @@ function chat($scope, $http, $cookies, socket, $stateParams, server, $rootScope,
        })
         $scope.add_music_uid=""
         $scope.add_music=false
+    }
+
+    //发送图片
+    $scope.addImg=function(){
+        var img_src=$scope.add_img_src;
+        server.addImg({
+            userId:$rootScope.session_user["_id"],
+            roomId: $stateParams.roomId,
+            imgsrc:img_src
+        })
+        $scope.add_img_src=""
+        $scope.add_img=false
     }
 
 

@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en" ng-app="qvod">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta charset="UTF-8">
+    <title>逆转快播</title>
+    <link rel="stylesheet" href="./bower_components/bootstrap/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="./style.css"/>
+    <script src="./bower_components/angular/angular.min.js"></script>
+    <script src="./bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="./bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="./qvod.js"></script>
+</head>
+<body>
+<div class="container" ng-controller="qvodCtrl">
+    <div class="row">
+        <div class="col-sm-6 col-sm-offset-3">
+            <div class="start">
+                <img src="./imgs/strat.jpg" class="" alt=""  height="341" />
+                <h1 class="text-center">欢迎来到逆转快播的GAME</h1>
+                <div class="panel panel-default">
+                    <div class="panel-heading">在此GAME你会收获如下</div>
+                    <div class="panel-body">
+                        <ul class="list-group">
+                            <li class="list-group-item">
+                                学会辩(da)诉(lian)
+                            </li>
+                            <li class="list-group-item">
+                                学会法(da)律(lian)
+                            </li>
+                            <li class="list-group-item">
+                                学会打发时间
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <p>如果准备好了请按开始按钮 <button ng-click="" class="btn btn-default">开始</button></p>
+            </div>
+            <div class="text_content">
+                <ul class="list-group">
+                    <li class="list-group-item" ng-repeat="text in qvod_text">
+                        <img src="{{text.img}}" alt="" ng-if="text.img"/>
+                        <p ng-bind-html="text.txt"></p>
+                        <div>
+                            <button ng-click="choice(btn,$index,text.btn)" ng-disabled="text.disable" class="btn btn-default" ng-class="btn.active?'active':'' " ng-repeat="btn in text.btn" >{{btn.btn_txt}}</button>
+                        </div>
+                    </li>
+                </ul>
+        </div>
+
+    </div>
+
+</div>
+</body>
+</html>

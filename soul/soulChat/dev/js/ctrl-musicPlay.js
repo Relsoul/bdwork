@@ -60,6 +60,7 @@ app.directive("musicPlayer", function ($timeout) {
                     if ($scope.pointer <= 0) {
                         return false
                     }
+
                     //设置歌曲与进度条为初始状态
                     $scope.clearAudioProgress(true)
                     $scope.setNowTime(0)
@@ -73,7 +74,6 @@ app.directive("musicPlayer", function ($timeout) {
             //关于DOM操作都在这块
             scope.audio = $(".music_audio")[0]
             scope.audio_progress = $(".music-play-progress")[0];
-
             //当歌曲触发了canplay事件才能播放
             $(scope.audio).on("canplay", function () {
                 //重置歌曲信息

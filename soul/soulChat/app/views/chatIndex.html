@@ -65,21 +65,36 @@
             </div>
             <div class="row">
                 <div class="col-xs-12">
-                    <div class="panel panel-default" ng-show="add_music">
-                        <div class="panel-body">
-                            <p>歌曲名称:{{add_music_name}}</p>
-                            <p>目前仅仅支持网易云,请输入网易云歌曲ID如 <code>http://music.163.com/#/song?id=33599403</code> 仅仅只需要输入<code>33599403</code></p>
-                            <div class="input-group">
-                                <input type="text" ng-model="add_music_uid" class="form-control"/>
+                    <div class="tools">
+                        <div class="panel panel-default" ng-show="add_music">
+                            <div class="panel-body">
+                                <p>目前仅仅支持网易云,请输入网易云歌曲ID如 <code>http://music.163.com/#/song?id=33599403</code> 仅仅只需要输入<code>33599403</code></p>
+                                <div class="input-group">
+                                    <input type="text" ng-model="add_music_uid" class="form-control"/>
                                 <span class="input-group-btn">
                                      <button ng-click="addMusic()" class="btn btn-default">确认添加</button>
                                     <button ng-click="add_music=false" class="btn btn-default">关闭</button>
                               </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-default" ng-show="add_img">
+                            <div class="panel-body">
+                                <p>请输入img外链地址</p>
+                                <div class="input-group">
+                                    <input type="text" ng-model="add_img_src" class="form-control"/>
+                                <span class="input-group-btn">
+                                     <button ng-click="addImg()" class="btn btn-default">确认添加</button>
+                                    <button ng-click="add_img=false" class="btn btn-default">关闭</button>
+                              </span>
+                                </div>
                             </div>
                         </div>
                     </div>
+
                     <div class="btn-group" role="group" aria-label="...">
                         <button type="button" class="btn btn-default" ng-click="add_music=true">添加音乐</button>
+                        <button type="button" class="btn btn-default" ng-click="add_img=true">发送图片</button>
                     </div>
                     <div class="input-group">
                         <input type="text" ng-model="send_message" class="form-control"/>

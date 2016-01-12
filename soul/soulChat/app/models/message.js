@@ -6,6 +6,7 @@ var Schema = mongoose.Schema,
     ObjectId = Schema.ObjectId
 var MessageSchema = new Schema({
     content: String,
+    content_img:String,
     user: {type: ObjectId, ref: "User"},
     _roomId: {type: ObjectId, ref: "Room"},
     createAt: {type: Date, default: Date.now()}
