@@ -1,0 +1,41 @@
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <h1>个人页面</h1>
+                </div>
+                <div class="panel-body">
+                    <p class="text-info">{{login_info}}</p>
+                    <button ng-if="user_info.is_owner" ng-click="user_info_is_modify=true" class="btn btn-default">修改资料</button>
+                    <button ng-if="!user_info.is_owner" class="btn-default btn">发起私聊</button>
+                    <div class="user-list">
+                        <ul class="list-group">
+                            <li class="list-group-item">
+                                <span>头像:</span>
+                                <img src="{{user_ingo.avatar}}" class="" alt=""/>
+                                <button class="btn btn-default" ng-if="user_info_is_modify">更改头像</button>
+                            </li>
+                            <li class="list-group-item">
+                                <span>用户名:</span>
+                                <span>{{user_info.name}}</span>
+                            </li>
+                            <li class="list-group-item">
+                                <span>邮箱:</span>
+                                <span>{{user_info.email}}</span>
+                                <input type="text" ng-model="user_info.email" ng-if="user_info_is_modify"/>
+                            </li>
+                            <li class="list-group-item">
+                                <span>个人留言:</span>
+                                <span>{{user_info.leave_message}}</span>
+                            </li>
+                            <li class="list-group-item">
+                                <button class="btn btn-default" ng-if="user_info.is_owner" ng-click="submitChange()">提交修改</button>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -38,4 +38,9 @@ app.config(function($stateProvider,$urlRouterProvider){
             templateUrl:"chatRoomAdmin-detail.html",
             controller:chatAdminDetail
         })
+        .state("userInfo",{
+            url:"/userInfo/:id",
+            templateUrl:"userInfo.html",
+            controller:userInfo
+        })
 })

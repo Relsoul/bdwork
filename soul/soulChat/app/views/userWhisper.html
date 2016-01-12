@@ -1,0 +1,46 @@
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="panel">
+                <div class="panel-heading">
+                    <h1>私聊</h1>
+                </div>
+                <div class="panel-body">
+                    <div class="col-sm-10 chatContent">
+                        <div class="chatContent-message">
+                            <ul class="list-group">
+                                <li class="list-group-item clearfix"
+                                    ng-repeat="mes in userWhisper.message  | orderBy:'+createAt' |  limitTo:-15">
+                                    <div ng-switch on="mes.user.name==session_user.name">
+                                        <div ng-switch-when="true" class="row">
+                                            <div class="col-xs-4 col-xs-offset-5 text-right">
+                                                <img ng-src="{{mes.content_img}}" alt="" class="img-responsive"/>
+                                                <p class="text-right">{{mes.content}}</p>
+                                            </div>
+                                            <div class="col-xs-3 col-sm-1">
+                                                <img class="img-responsive" width="50" height="50" ng-src=" {{mes.user.avatarUrl}} "
+                                                     alt=""/>
+                                                <p class="message_time">{{mes.user.name}}<br>
+                                                    {{mes.createAt| date:'MM-dd HH:mm:ss '}}</p>
+                                            </div>
+                                        </div>
+                                        <div ng-switch-default>
+                                            <div class="col-xs-3 col-sm-1">
+                                                <img class="img-responsive" width="50" height="50" ng-src=" {{mes.user.avatarUrl}} "
+                                                     alt=""/>
+                                                <p class="message_time">{{mes.user.name}}<br>
+                                                    {{mes.createAt| date:'MM-dd HH:mm:ss '}}</p>
+                                            </div>
+                                            <div class="col-xs-9 text-left">
+                                                {{mes.content}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
