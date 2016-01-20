@@ -1,20 +1,79 @@
 <div class="container">
     <div class="row">
         <div class="col-sm-12">
-            <div class="panel panel-info">
+            <div class="panel panel-info fixBottom">
                 <div class="panel-heading">
                     <h1>个人页面</h1>
                 </div>
                 <div class="panel-body">
-                    <p class="text-info">{{login_info}}</p>
-                    <button ng-if="user_info.is_owner" ng-click="user_info_is_modify=true" class="btn btn-default">修改资料</button>
-                    <button ng-if="!user_info.is_owner" class="btn-default btn">发起私聊</button>
-                    <div class="user-list">
-                        <ul class="list-group">
+                    <p class="text-info">{{user_err}}</p>
+
+                    <div class="user-list" ng-if="!user_err">
+                        <button ng-if="user_info.is_owner" ng-click="showUserList()" class="btn btn-default">修改资料
+                        </button>
+                        <button ng-if="!user_info.is_owner" class="btn-default btn">发起私聊</button>
+                        <form action="" class="form-horizontal" ng-if="user_info_is_modify" name="user_form">
+                            <div class="form-group">
+                                <label for="user_avatarUrl" class="col-xs-2 control-label">头像</label>
+
+                                <div class="col-xs-10">
+                                    <img ngf-thumbnail="upload_img||user_info.avatarUrl" class="" alt=""
+                                         width="100" height="100"/>
+
+                                    <div class="btn btn-default " ngf-select ng-model="upload_img"
+                                         name="upload_img" ngf-pattern="'image/*'" ngf-accept="'image/*'"
+                                         ngf-max-size="2MB" ngf-min-height="100">Select
+                                    </div>
+                                    <span>限制2M大小~格式:png|jpg|gif</span>
+                                </div>
+
+                            </div>
+                            <div class="form-group">
+                                <label for="user_old_pw" class="col-xs-2 control-label">原密码</label>
+
+                                <div class="col-xs-5">
+                                    <input type="password" id="user_old_pw" ng-model="user_info.old_password"
+                                           class="form-control" minlength="6"/>
+                                </div>
+                                <p class="col-xs-5">
+                                    留空即为不修改,密码需大于6位哦~
+                                </p>
+                            </div>
+                            <div class="form-group">
+                                <label for="user_new_pw" class="col-xs-2 control-label" minlength="6">新密码</label>
+
+                                <div class="col-xs-5">
+                                    <input type="password" id="user_new_pw" ng-model="user_info.new_password"
+                                           class="form-control"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="user_email" class="col-xs-2 control-label">邮箱</label>
+
+                                <div class="col-xs-5">
+                                    <input type="emial" id="user_email" ng-model="user_info.email"
+                                           class="form-control" required
+                                           ng-pattern="/^[A-Za-zd0-9]+([-_.][A-Za-zd0-9]+)*@([A-Za-zd0-9]+[-.])+[A-Za-zd]{2,10}$/"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="leaveMessage" class="col-xs-2 control-label">留言</label>
+
+                                <div class="col-xs-5">
+                                    <input type="text" id="leaveMessage" ng-model="user_info.leaveMessage"
+                                           class="form-control"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <button class="btn btn-default col-xs-offset-4"
+                                        ng-click="submitChange(upload_img)">提交
+                                </button>
+                            </div>
+                        </form>
+                        <ul class="list-group" ng-if="!user_info_is_modify">
                             <li class="list-group-item">
                                 <span>头像:</span>
-                                <img src="{{user_ingo.avatar}}" class="" alt=""/>
-                                <button class="btn btn-default" ng-if="user_info_is_modify">更改头像</button>
+                                <img src="{{user_info.avatarUrl}}" class="" alt="" width="100" height="100"/>
                             </li>
                             <li class="list-group-item">
                                 <span>用户名:</span>
@@ -22,15 +81,11 @@
                             </li>
                             <li class="list-group-item">
                                 <span>邮箱:</span>
-                                <span>{{user_info.email}}</span>
-                                <input type="text" ng-model="user_info.email" ng-if="user_info_is_modify"/>
+                                <span ng-if="!user_info_is_modify">{{user_info.email}}</span>
                             </li>
                             <li class="list-group-item">
                                 <span>个人留言:</span>
-                                <span>{{user_info.leave_message}}</span>
-                            </li>
-                            <li class="list-group-item">
-                                <button class="btn btn-default" ng-if="user_info.is_owner" ng-click="submitChange()">提交修改</button>
+                                <span>{{user_info.leaveMessage}}</span>
                             </li>
                         </ul>
                     </div>

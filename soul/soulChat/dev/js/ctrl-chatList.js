@@ -54,6 +54,7 @@ function chatList($scope, $http, socket, $state, $rootScope, server, checkLogin)
 
 
     $scope.goRoom = function (roomId) {
+        $rootScope.session_user['roomId']=roomId
         $state.go("chat", {
             roomId: roomId
         })

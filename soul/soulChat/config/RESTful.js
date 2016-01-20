@@ -7,7 +7,7 @@ var user=require("../app/controller/user.js")
 var chat=require("../app/controller/chat.js")
 
 
-module.exports=function(app,io){
+module.exports=function(app,io,upload_avatar){
     app.get("/",function(req,res){
         res.sendFile(path.join(__dirname,"../app/views/index.html"))
     })
@@ -24,4 +24,5 @@ module.exports=function(app,io){
     //符合
     app.get("/api/RoomDetail/:id",user.adminRequired,user.loginRequired,chat.getRoomDetail)
     app.post("/api/RoomDetail/:id",user.adminRequired,user.loginRequired,chat.changeRoomDetail)
+    app.post('/api/user/:id',upload_avatar,user.loginRequired,user.updateUser)
 }

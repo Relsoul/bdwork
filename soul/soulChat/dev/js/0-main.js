@@ -1,7 +1,7 @@
 /**
  * Created by soul on 2015/12/23.
  */
-var app=angular.module("soulChat",["ui.router","ngCookies","ngSanitize"]);
+var app=angular.module("soulChat",["ui.router","ngCookies","ngSanitize",'ngFileUpload']);
 
 app.run(function($rootScope,$window,$cookies,$http,$state,$templateCache){
     $rootScope.session_user={};

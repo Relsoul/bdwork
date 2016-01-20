@@ -54,9 +54,9 @@ app.factory("server",function($rootScope,socket,$cacheFactory,$interval,$state,$
                 console.log("musid data",_data)
                 console.log("music get room id",cache.get(roomId))
                 break
-            case "addImg":
-
-
+            case "getUserInfo":
+                 var _data=data.data;
+                $rootScope.$broadcast("user_info",_data);
         }
     })
 
@@ -136,6 +136,12 @@ app.factory("server",function($rootScope,socket,$cacheFactory,$interval,$state,$
                 data:addImg
             })
 
+        },
+        getUserInfo:function(id){
+            socket.emit("soulChat",{
+                action:"getUserInfo",
+                data:id
+            })
         }
     }
 })

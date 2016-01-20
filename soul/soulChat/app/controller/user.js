@@ -4,7 +4,8 @@
 var user_model=require("../models/user");
 var mongoose=require("mongoose");
 var Schema=mongoose.Schema,
-    ObjectId=Schema.Types.ObjectId
+    ObjectId=Schema.Types.ObjectId;
+var config=require("../../config/config")
 
 exports.signUp=function(req,res){
     var _user=req.body.reg;
@@ -108,6 +109,72 @@ exports.userLogout=function(req,res){
         res.json({
             isLogout:true
         })
+}
+
+
+exports.updateUser=function(req,res){
+    var _user_info=req.body.user_info
+    console.log(115,req.body)
+    console.log(116,req.file)
+    if(req.file){
+        var filename=config.avatar;
+        user_model.update({_id:_user_info._id},{$set:{avatarUrl:filename}},function(err){
+            if(err){
+                return res.json({
+                    err:'上传错误',
+                })
+            }
+        })
+
+    }
+    //修改密码的情况下
+    if(_user_info.old_password && _user_info.new_password){
+        user_model.findOne({_id:_user_info._id},function(err,user){
+            user.getPass(_user_info.old_password, function (err,isMatch) {
+                if(err){
+                   return res.json({
+                        err:'密码确认错误',
+                    })
+                }
+                if(isMatch){
+                    user.password=_user_info.new_password;
+                    user.emial=_user_info.email;
+                    user.leaveMessage=_user_info.leaveMessage;
+                    user.save(function(err,data){
+                        if(err){
+                            return res.json({
+                                err:'修改错误',
+                            })
+                        }
+                        delete req.session.user
+                        return res.json({
+                            info:'修改成功',
+                        });
+
+                    })
+                }else{
+                    return res.json({
+                        err:'原密码不正确',
+                    })
+                }
+            })
+        })
+    }else{
+        //调用update方式
+        user_model.update({_id:_user_info._id},{$set:{'email':_user_info.email,'leaveMessage':_user_info.leaveMessage}},function(err){
+            if(err){
+                res.json({
+                    err:'修改错误',
+                })
+            }else{
+                res.json({
+                    info:'修改成功'
+                })
+
+            }
+
+        })
+    }
 }
 
 

@@ -48,7 +48,8 @@ var UserSchema=new mongoose.Schema({
             type:Date,
             default:Date.now()
         }
-    }
+    },
+    leaveMessage:String
 })
 
 
@@ -111,7 +112,7 @@ UserSchema.statics={
     },
     getUserRooms:function(cb){
         return this.find({online:true}).populate("_roomId").exec(cb)
-    }
+    },
 }
 
 
