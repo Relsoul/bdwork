@@ -9,9 +9,13 @@ var room_model = require("../app/models/room");
 var request=require("request");
 var music_model=require("../app/models/music");
 var category_model=require("../app/models/category");
+var whisper_model=require("../app/models/whisper")
 
 var onEvent="soulChat";
 
+/*
+*  有个bug, 如果id为自己的话不需由浏览器提交 转而用req.session来获取
+* */
 
 exports.getAllRooms = function (data, socket) {
         var rooms_config={
@@ -306,5 +310,22 @@ exports.getUserInfo=function(id,socket,io){
             })
         }
     })
-
 };
+
+exports.getWhisperUser=function(id){
+    whisper_model.findWhisper(id,null,true,function(err,whispers){
+        if(err){
+            socket.emit("err",{
+                megs:err
+            })
+        }else{
+            socker.emit(onEvent,{
+                action:"getWhisperUser",
+                data:{
+                    form:whispers.form,
+                    to:whispers.form
+                }
+            })
+        }
+    })
+}

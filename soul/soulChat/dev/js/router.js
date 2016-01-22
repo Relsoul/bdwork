@@ -43,4 +43,9 @@ app.config(function($stateProvider,$urlRouterProvider){
             templateUrl:"userInfo.html",
             controller:userInfo
         })
+        .state("whisper",{
+            url:'/userWhisper/:id',
+            templateUrl:'whisper.html',
+            controller:userWhisper
+        })
 })

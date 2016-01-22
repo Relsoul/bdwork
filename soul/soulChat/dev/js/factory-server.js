@@ -142,6 +142,13 @@ app.factory("server",function($rootScope,socket,$cacheFactory,$interval,$state,$
                 action:"getUserInfo",
                 data:id
             })
+        },
+        getWhisperUser:function(id){
+            socket.emit('soulChat',{
+                action:"getWhisperUser",
+                data:id
+            })
+
         }
     }
 })

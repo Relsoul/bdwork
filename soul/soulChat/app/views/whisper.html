@@ -1,0 +1,74 @@
+<div class="container">
+    <div class="row">
+        <div class="col-xs-2">
+            <ul class="list-group">
+                <li class="list-group-item" ng-repeat="user in users">小明</li>
+                <li class="list-group-item">小红</li>
+            </ul>
+        </div>
+        <div class="col-xs-10">
+            <div class="chatContent-message">
+                <ul class="list-group">
+                    <li class="list-group-item clearfix"
+                        ng-repeat="mes in room.message  | orderBy:'+createAt' |  limitTo:-15">
+                        <div ng-switch on="mes.user.name==session_user.name">
+                            <div ng-switch-when="true" class="row">
+                                <div class="col-xs-4 col-xs-offset-5 text-right">
+                                    <img ng-src="{{mes.content_img}}" alt="" class="img-responsive"/>
+                                    <p class="text-right">{{mes.content}}</p>
+                                </div>
+                                <div class="col-xs-3 col-sm-1">
+                                    <img class="img-responsive" width="50" height="50" ng-src=" {{mes.user.avatarUrl}} "
+                                         alt=""/>
+                                    <p class="message_time">{{mes.user.name}}<br>
+                                        {{mes.createAt| date:'MM-dd HH:mm:ss '}}</p>
+                                </div>
+                            </div>
+                            <div ng-switch-default>
+                                <div class="col-xs-3 col-sm-1">
+                                    <img class="img-responsive" width="50" height="50" ng-src=" {{mes.user.avatarUrl}} "
+                                         alt=""/>
+                                    <p class="message_time">{{mes.user.name}}<br>
+                                        {{mes.createAt| date:'MM-dd HH:mm:ss '}}</p>
+                                </div>
+                                <div class="col-xs-9 text-left">
+                                    {{mes.content}}
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="tools">
+                        <div class="panel panel-default" ng-show="add_img">
+                            <div class="panel-body">
+                                <p>请输入img外链地址</p>
+                                <div class="input-group">
+                                    <input type="text" ng-model="add_img_src" class="form-control"/>
+                                <span class="input-group-btn">
+                                     <button ng-click="addImg()" class="btn btn-default">确认添加</button>
+                                    <button ng-click="add_img=false" class="btn btn-default">关闭</button>
+                              </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="btn-group" role="group" aria-label="...">
+                        <button type="button" class="btn btn-default" ng-click="add_music=true">添加音乐</button>
+                        <button type="button" class="btn btn-default" ng-click="add_img=true">发送图片</button>
+                    </div>
+                    <div class="input-group">
+                        <input type="text" ng-model="send_message" class="form-control"/>
+                    <span class="input-group-btn">
+                         <button ng-click="sendMessage()" class="btn btn-default">发送</button>
+                  </span>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>

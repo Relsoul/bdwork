@@ -49,6 +49,7 @@ var UserSchema=new mongoose.Schema({
             default:Date.now()
         }
     },
+    whisper:[{type:ObjectId,ref:"Whisper"}],
     leaveMessage:String
 })
 

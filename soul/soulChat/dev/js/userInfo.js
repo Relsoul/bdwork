@@ -74,7 +74,6 @@ function userInfo($scope,server,checkLogin,$stateParams,Upload,$http,$window,$ti
 
                     }
                     console.log(58,data)
-
                 })
         }
 
