@@ -17,17 +17,20 @@ var onEvent="soulChat";
 *  有个bug, 如果id为自己的话不需由浏览器提交 转而用req.session来获取
 * */
 
+// 聊天列表页获取信息
 exports.getAllRooms = function (data, socket) {
         var rooms_config={
             "categorys":[],
             "users":[]
         };
+    //查找分类
     category_model.getCategorys(function(err,categorys){
         if(err){
             socket.emit("err",{
                 megs:err
             })
         }else{
+            //分类循环获取room
             categorys.forEach(function(e,i){
                 e.rooms.user=0;
                 rooms_config.categorys.push({
@@ -61,13 +64,16 @@ exports.getAllRooms = function (data, socket) {
     })
 };
 
+// 聊天页获取房间信息
 exports.getRoom=function(data,socket){
     var _roomId=data.roomId;
     var data_config={};
     console.log("getRoomData",data);
+    //获取房间信息
     user_model.getRoom(_roomId,function(err,user){
         console.log(54,user);
-        if(err){
+        //判断一下user是否为空
+        if(err||!user){
             socket.emit("err",{
                 megs:err
             })
@@ -84,7 +90,7 @@ exports.getRoom=function(data,socket){
 
             room_model.getMusics(_roomId,function(err,room){
                 console.log(82,room);
-                data_config["music"]=room.music;
+                data_config["music"]=room.music||[];
                 data_config["name"]=room.name;
                 data_config["background"]=room.backgroundImg||[];
                 message_model.getRoomMessages(_roomId,function(err,message){

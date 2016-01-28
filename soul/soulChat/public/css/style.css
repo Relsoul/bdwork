@@ -1,0 +1,50 @@
+* {
+  font-family: 'sans-serif'; }
+
+.snow-hello {
+  background: rgba(0, 0, 0, 0.5);
+  padding-top: 20px;
+  margin-bottom: 100px;
+  color: #fff;
+  height: 100%; }
+  .snow-hello label {
+    font-size: 16px; }
+  .snow-hello form span {
+    color: #008800; }
+  .snow-hello .center {
+    margin-top: 100px; }
+
+.header {
+  position: relative;
+  z-index: 100; }
+
+.fixBottom {
+  margin-bottom: 200px; }
+
+.chatContent {
+  margin-bottom: 200px; }
+
+@media (max-width: 768px) {
+  .roomNumber {
+    display: none; }
+
+  .message_time {
+    font-size: 20%; } }
+.now_play {
+  background: red; }
+
+.bar-bg {
+  width: 100%;
+  height: 15px;
+  display: block;
+  border-radius: 8px;
+  background: #485876; }
+
+.bar-on {
+  width: 0;
+  display: block;
+  border-radius: 8px;
+  height: 15px;
+  animation: bar 7s ease  infinite;
+  -webkit-animation: bar 7s ease  infinite;
+  background: linear-gradient(-45deg, rgba(247, 122, 122, 0.9) 0%, transparent 30%, rgba(247, 122, 122, 0.4) 60%, rgba(247, 122, 122, 0.9) 80%, transparent 100%); }
