@@ -23,7 +23,7 @@ module.exports=function(app,io) {
             mongoose.connection.db.collection("sessions", function (err, collection) {
                 collection.find({_id: sid}).toArray(function (err, results) {
                     console.log('session',err,results)
-                    if (err||!results) {
+                    if (!results.length||err) {
                         callback(err, false)
                     } else {
                         handshakeData.session = JSON.parse(results[0].session)

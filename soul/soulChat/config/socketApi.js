@@ -73,7 +73,7 @@ exports.getRoom=function(data,socket){
     user_model.getRoom(_roomId,function(err,user){
         console.log(54,user);
         //判断一下user是否为空
-        if(err||!user){
+        if(!user||err){
             socket.emit("err",{
                 megs:err
             })
@@ -89,8 +89,8 @@ exports.getRoom=function(data,socket){
             data_config["user"]=user;
 
             room_model.getMusics(_roomId,function(err,room){
-                if(err||!room){
-                    socket.emit("err",{
+                if(!room||err){
+                    return socket.emit("err",{
                         megs:err
                     })
                 }
