@@ -89,6 +89,11 @@ exports.getRoom=function(data,socket){
             data_config["user"]=user;
 
             room_model.getMusics(_roomId,function(err,room){
+                if(err||!room){
+                    socket.emit("err",{
+                        megs:err
+                    })
+                }
                 console.log(82,room);
                 data_config["music"]=room.music||[];
                 data_config["name"]=room.name;

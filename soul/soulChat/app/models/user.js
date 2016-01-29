@@ -18,7 +18,7 @@ var UserSchema=new mongoose.Schema({
         min:2,
         max:16
     },
-    _roomId:{type:ObjectId,default:"56896be6a43fa3e02695c019",ref:"Room"},
+    _roomId:{type:ObjectId,default:"56aad0a2b4e3f32931ed0e22",ref:"Room"},
     online:Boolean,
     avatarUrl:{type:String,default:"http://www.cssxn.com/fzl/tupian/201501/2015011412373426.jpg"},
     password:{
