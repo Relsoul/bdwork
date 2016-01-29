@@ -22,7 +22,7 @@ module.exports=function(app,io) {
             //用mongodb查询语法
             mongoose.connection.db.collection("sessions", function (err, collection) {
                 collection.find({_id: sid}).toArray(function (err, results) {
-                    if (err) {
+                    if (err||!results) {
                         callback(err, false)
                     } else {
                         handshakeData.session = JSON.parse(results[0].session)

@@ -6,7 +6,7 @@ var app=angular.module("soulChat",["ui.router","ngCookies","ngSanitize",'ngFileU
 app.run(function($rootScope,$window,$cookies,$http,$state,$templateCache){
     $rootScope.session_user={};
     $rootScope.rooms_config=null;
-    
+
     console.log("run");
     //根据session获取name 类似于中间件
     $rootScope.$on("$stateChangeStart",function(evt, next, toParams, fromState, fromParams){
