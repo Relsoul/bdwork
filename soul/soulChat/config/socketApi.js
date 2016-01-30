@@ -335,7 +335,7 @@ exports.getWhisperUser=function(id,socket){
                 megs:err
             })
         }else{
-            socker.emit(onEvent,{
+            socket.emit(onEvent,{
                 action:"getWhisperUser",
                 data:{
                     form:whispers.form,
