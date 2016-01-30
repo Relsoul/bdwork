@@ -576,7 +576,12 @@ function userInfo($scope,server,checkLogin,$stateParams,Upload,$http,$window,$ti
            $scope.user_err='未找到此用户';
             return false
         }
-        $scope.user_info.is_owner=true;
+        if($rootScope.session_user['_id']!=$scope.user_info._id){
+            $scope.user_info.is_owner=false;
+        }else{
+            $scope.user_info.is_owner=true
+        }
+
 
     });
     server.getUserInfo($stateParams.id);
