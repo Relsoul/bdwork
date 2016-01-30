@@ -11,8 +11,26 @@ function userWhisper($scope,$scope,$http,$cookies, socket, $stateParams, server,
 
     //无
     if($stateParams.id){
-        server.getWhisperMessage('$stateParams.id')
+        server.getWhisperMessage('$stateParams.id');
+        $scope.is_chat=true
+        $scope.whisper=[]
+        $scope.$on("sendWhisperMessage",function(e,d){
+            $scope.whisper.push(d)
+        })
     }
+
+    //发送消息
+    $scope.sendMessage = function () {
+        var _content = $scope.send_message
+        server.sendWhisperMessage({
+            userId: $rootScope.session_user["_id"],
+            username: $rootScope.session_user["name"],
+            toUserId: $stateParams.id,
+            content: _content
+        })
+        $scope.send_message = ""
+    }
+
     server.getWhisperUser($rootScope.session_user["_id"]);
     $scope.$on("getWhisperUser",function(e,d){
         console.log('getWhisper',d)

@@ -100,15 +100,6 @@ function chat($scope, $http, $cookies, socket, $stateParams, server, $rootScope,
 
 
 
-
-
-
-
-
-
-
-
-
     //发送消息
     $scope.sendMessage = function () {
         var _content = $scope.send_message
@@ -558,6 +549,92 @@ app.directive("ensureUnique", function ($http, $timeout, $window) {
 })
 
 /**
+ * Created by soul on 2016/1/12.
+ */
+function userInfo($scope,server,checkLogin,$stateParams,Upload,$http,$window,$timeout){
+    //判断是否登陆
+    checkLogin(1500,0,null,function(){
+        $state.go("login")
+    });
+
+    //无
+    if(!$stateParams.id){
+        $state.go("login");
+        return false
+    }
+    $scope.upload_img_file=null;
+    $scope.$on("user_info",function(e,d){
+        $scope.user_info=d;
+        console.log("user_info",$scope.user_info);
+        if($scope.user_info==true && typeof $scope.user_info!="object"){
+           $scope.user_err='未找到此用户';
+            return false
+        }
+        $scope.user_info.is_owner=true;
+
+    });
+    server.getUserInfo($stateParams.id);
+    $scope.user_info_is_modify=false;
+    $scope.showUserList=function(){
+        $scope.user_info_is_modify=true;
+    }
+
+    //
+    $scope.submitChange=function(upload_img){
+        var _upload_img=upload_img;
+        console.log(35,$scope.user_info);
+        if(_upload_img){
+            console.log("okay img upload",_upload_img)
+            Upload.upload({
+                url: '/api/user/'+$stateParams.id,
+                data: {file: _upload_img, 'user_info': $scope.user_info},
+                method:'POST'
+            }).then(function (data) {
+                data=data.data
+                if(data.err){
+                    $scope.user_err=data.err
+                    $timeout(function(){
+                        $window.location.reload()
+                    },1500)
+                }else{
+                    $scope.user_err=data.info
+                    $timeout(function(){
+                        $window.location.reload()
+                    },1500)
+                }
+            });
+        }else{
+            console.log("okay")
+            $http({
+                method:'post',
+                url:'/api/user/'+$stateParams.id,
+                data:{'user_info':$scope.user_info}
+            })
+                .success(function(data){
+                    if(data.err){
+                        $scope.user_err=data.err
+                        $timeout(function(){
+                            $window.location.reload()
+                        },1500)
+                    }else{
+                        $scope.user_err=data.info
+                        $timeout(function(){
+                            $window.location.reload()
+                        },1500)
+
+                    }
+                    console.log(58,data)
+                })
+        }
+    }
+
+    $scope.goWhisper=function(){
+        $state.go('userWhisper',{id: $stateParams.id})
+    }
+
+
+}
+/**
  * Created by soul on 2016/1/21.
  */
 function userWhisper($scope,$scope,$http,$cookies, socket, $stateParams, server, $rootScope, $state,checkLogin){
@@ -570,8 +647,26 @@ function userWhisper($scope,$scope,$http,$cookies, socket, $stateParams, server,
 
     //无
     if($stateParams.id){
-        server.getWhisperMessage('$stateParams.id')
+        server.getWhisperMessage('$stateParams.id');
+        $scope.is_chat=true
+        $scope.whisper=[]
+        $scope.$on("sendWhisperMessage",function(e,d){
+            $scope.whisper.push(d)
+        })
     }
+
+    //发送消息
+    $scope.sendMessage = function () {
+        var _content = $scope.send_message
+        server.sendWhisperMessage({
+            userId: $rootScope.session_user["_id"],
+            username: $rootScope.session_user["name"],
+            toUserId: $stateParams.id,
+            content: _content
+        })
+        $scope.send_message = ""
+    }
+
     server.getWhisperUser($rootScope.session_user["_id"]);
     $scope.$on("getWhisperUser",function(e,d){
         console.log('getWhisper',d)
@@ -808,6 +903,12 @@ app.factory("server",function($rootScope,socket,$cacheFactory,$interval,$state,$
             case "getUserInfo":
                  var _data=data.data;
                 $rootScope.$broadcast("user_info",_data);
+            case "getWhisperUser":
+                var _data=data.data;
+                $rootScope.$broadcast("getWhisperUser",_data);
+            case 'sendWhisperMessage':
+                var _data=data.data;
+                $rootScope.$broadcast("sendWhisperMessage",_data);
         }
     })
 
@@ -861,6 +962,22 @@ app.factory("server",function($rootScope,socket,$cacheFactory,$interval,$state,$
             })
         },
         /*
+         *
+         * message:{
+         *   userId:userId
+         *   username:username,
+         *   toUserId:id,
+         *   content:message
+         * }
+         *
+         * */
+        sendWhisperMessage:function(message){
+            socket.emit("soulChat",{
+                action:"sendWhisperMessage",
+                data:message
+            })
+        },
+        /*
         * addMusic:{
         *   roomId:roomId,
         *   username:username,
@@ -900,7 +1017,7 @@ app.factory("server",function($rootScope,socket,$cacheFactory,$interval,$state,$
                 data:id
             })
 
-        }
+        },
     }
 })
 /**
@@ -981,91 +1098,3 @@ app.config(function($stateProvider,$urlRouterProvider){
             controller:userWhisper
         })
 })
-/**
- * Created by soul on 2016/1/12.
- */
-function userInfo($scope,server,checkLogin,$stateParams,Upload,$http,$window,$timeout){
-    //判断是否登陆
-    checkLogin(1500,0,null,function(){
-        $state.go("login")
-    });
-
-    //无
-    if(!$stateParams.id){
-        $state.go("login");
-        return false
-    }
-    $scope.upload_img_file=null;
-    $scope.$on("user_info",function(e,d){
-        $scope.user_info=d;
-        console.log("user_info",$scope.user_info);
-        if($scope.user_info==true && typeof $scope.user_info!="object"){
-           $scope.user_err='未找到此用户';
-            return false
-        }
-        $scope.user_info.is_owner=true;
-
-    });
-    server.getUserInfo($stateParams.id);
-    $scope.user_info_is_modify=false;
-    $scope.showUserList=function(){
-        $scope.user_info_is_modify=true;
-    }
-
-    //
-    $scope.submitChange=function(upload_img){
-        var _upload_img=upload_img;
-        console.log(35,$scope.user_info);
-        if(_upload_img){
-            console.log("okay img upload",_upload_img)
-            Upload.upload({
-                url: '/api/user/'+$stateParams.id,
-                data: {file: _upload_img, 'user_info': $scope.user_info},
-                method:'POST'
-            }).then(function (data) {
-                data=data.data
-                if(data.err){
-                    $scope.user_err=data.err
-                    $timeout(function(){
-                        $window.location.reload()
-                    },1500)
-                }else{
-                    $scope.user_err=data.info
-                    $timeout(function(){
-                        $window.location.reload()
-                    },1500)
-                }
-            });
-        }else{
-            console.log("okay")
-            $http({
-                method:'post',
-                url:'/api/user/'+$stateParams.id,
-                data:{'user_info':$scope.user_info}
-            })
-                .success(function(data){
-                    if(data.err){
-                        $scope.user_err=data.err
-                        $timeout(function(){
-                            $window.location.reload()
-                        },1500)
-                    }else{
-                        $scope.user_err=data.info
-                        $timeout(function(){
-                            $window.location.reload()
-                        },1500)
-
-                    }
-                    console.log(58,data)
-                })
-        }
-
-
-
-    }
-
-
-
-
-
-}

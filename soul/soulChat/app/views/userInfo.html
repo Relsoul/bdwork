@@ -11,7 +11,7 @@
                     <div class="user-list" ng-if="!user_err">
                         <button ng-if="user_info.is_owner" ng-click="showUserList()" class="btn btn-default">修改资料
                         </button>
-                        <button ng-if="!user_info.is_owner" class="btn-default btn">发起私聊</button>
+                        <button ng-if="!user_info.is_owner" class="btn-default btn" ng-click="goWhisper()">发起私聊</button>
                         <form action="" class="form-horizontal" ng-if="user_info_is_modify" name="user_form">
                             <div class="form-group">
                                 <label for="user_avatarUrl" class="col-xs-2 control-label">头像</label>

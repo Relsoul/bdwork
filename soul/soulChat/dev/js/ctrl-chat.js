@@ -57,15 +57,6 @@ function chat($scope, $http, $cookies, socket, $stateParams, server, $rootScope,
 
 
 
-
-
-
-
-
-
-
-
-
     //发送消息
     $scope.sendMessage = function () {
         var _content = $scope.send_message

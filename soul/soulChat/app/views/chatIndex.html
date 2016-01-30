@@ -50,7 +50,7 @@
                             </div>
                             <div ng-switch-default>
                                 <div class="col-xs-3 col-sm-1">
-                                    <img class="img-responsive" width="50" height="50" ng-src=" {{mes.user.avatarUrl}} "
+                                    <img ui-sref="userInfo({id:mes.user._id})" class="img-responsive" width="50" height="50" ng-src=" {{mes.user.avatarUrl}} "
                                          alt=""/>
                                     <p class="message_time">{{mes.user.name}}<br>
                                         {{mes.createAt| date:'MM-dd HH:mm:ss '}}</p>

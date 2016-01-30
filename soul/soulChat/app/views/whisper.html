@@ -6,11 +6,11 @@
                 <li class="list-group-item">小红</li>
             </ul>
         </div>
-        <div class="col-xs-10">
+        <div class="col-xs-10" ng-if="is_chat">
             <div class="chatContent-message">
                 <ul class="list-group">
                     <li class="list-group-item clearfix"
-                        ng-repeat="mes in room.message  | orderBy:'+createAt' |  limitTo:-15">
+                        ng-repeat="mes in whisper  | orderBy:'+createAt' |  limitTo:-15">
                         <div ng-switch on="mes.user.name==session_user.name">
                             <div ng-switch-when="true" class="row">
                                 <div class="col-xs-4 col-xs-offset-5 text-right">

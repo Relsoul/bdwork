@@ -57,6 +57,12 @@ app.factory("server",function($rootScope,socket,$cacheFactory,$interval,$state,$
             case "getUserInfo":
                  var _data=data.data;
                 $rootScope.$broadcast("user_info",_data);
+            case "getWhisperUser":
+                var _data=data.data;
+                $rootScope.$broadcast("getWhisperUser",_data);
+            case 'sendWhisperMessage':
+                var _data=data.data;
+                $rootScope.$broadcast("sendWhisperMessage",_data);
         }
     })
 
@@ -110,6 +116,22 @@ app.factory("server",function($rootScope,socket,$cacheFactory,$interval,$state,$
             })
         },
         /*
+         *
+         * message:{
+         *   userId:userId
+         *   username:username,
+         *   toUserId:id,
+         *   content:message
+         * }
+         *
+         * */
+        sendWhisperMessage:function(message){
+            socket.emit("soulChat",{
+                action:"sendWhisperMessage",
+                data:message
+            })
+        },
+        /*
         * addMusic:{
         *   roomId:roomId,
         *   username:username,
@@ -149,6 +171,6 @@ app.factory("server",function($rootScope,socket,$cacheFactory,$interval,$state,$
                 data:id
             })
 
-        }
+        },
     }
 })

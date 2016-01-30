@@ -120,7 +120,7 @@ exports.getRoom=function(data,socket){
     })
 };
 
-//这里不应该这么写 有性能问题 不过这个坑占时不填
+//这里不应该这么写 有性能问题 不过这个坑暂时不填
 exports.sendMessage=function(message,socket,io){
     var _message=new message_model({
         content:message.content,
@@ -128,7 +128,6 @@ exports.sendMessage=function(message,socket,io){
         _roomId:message.roomId
     });
     _message.save(function(err,megs){
-
         //console.log(94,megs)
         if(err){
             socket.emit("err",{
@@ -138,11 +137,9 @@ exports.sendMessage=function(message,socket,io){
             megs.getMessageInfo(megs._id,function(err,returnmegs){
                 if(err){
                     console.log(103,err)
-
                 }else{
                     console.log(105,returnmegs);
                     console.log("发送的房间为:"+message.roomId);
-
                     io.sockets.to(message.roomId).emit(onEvent, {
                         action: 'sendMessage',
                         data: {
@@ -344,4 +341,36 @@ exports.getWhisperUser=function(id,socket){
             })
         }
     })
+}
+
+exports.sendWhisperMessage=function(WhisperMessage,socket,io){
+    var _WhisperMessage=new whisper_model({
+        content:WhisperMessage.content,
+        form:WhisperMessage.userId,
+        to:WhisperMessage.toUserId,
+    });
+    _WhisperMessage.save(function(err,W_M){
+        if(err){
+            return socket.emit("err",{
+                megs:err
+            })
+        }
+        user_model.findOne({_id:WhisperMessage.userId},{password:false,role:false,meta:false,_roomId:false},function(err,userinfo){
+            if(err){
+                return socket.emit("err",{
+                    megs:err
+                })
+            }
+            var result=W_M;
+            result.user=userinfo;
+            socket.emit(onEvent,{
+                action:'sendWhisperMessage',
+                data:result
+            })
+
+        })
+
+
+    })
+
 }
