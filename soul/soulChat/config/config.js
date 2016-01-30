@@ -6,11 +6,12 @@
 
 
 var obj=function(){
-    this.host='soulchat.cn';
-    this.static='public';
-    this.view="./app/views";
-    this.upload=this.static+"/upload";
-    this.avatar="http://"+this.host+"/"+this.upload+"/avatar";
 }
+obj.host='soulchat.cn';
+obj.static='public';
+obj.view="./app/views";
+obj.upload=this.static+"/upload";
+obj.avatar="http://"+this.host+"/"+this.upload+"/avatar";
+
 
 module.exports=obj
