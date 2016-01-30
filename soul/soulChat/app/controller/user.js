@@ -118,7 +118,7 @@ exports.updateUser=function(req,res){
     console.log(116,req.file)
     if(req.file){
         console.log(120,config)
-        var filename=config.avatar+req.file.filename;
+        var filename=config.avatar+"/"+req.file.filename;
         user_model.update({_id:_user_info._id},{$set:{avatarUrl:filename}},function(err){
             if(err){
                 return res.json({
