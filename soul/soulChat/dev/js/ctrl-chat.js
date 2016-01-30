@@ -93,5 +93,11 @@ function chat($scope, $http, $cookies, socket, $stateParams, server, $rootScope,
         $scope.add_img=false
     }
 
+    //跳转个人信息页面
+    $scope.goUserInfo=function(id){
+        $state.go('userInfo',{id:id})
+
+    }
+
 
 }
