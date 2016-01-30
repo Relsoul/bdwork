@@ -6,8 +6,8 @@
 var host='soulchat.cn';
 var static='public';
 var view="./app/views";
-var upload=this.static+"/upload";
-var avatar="http://"+this.host+"/"+this.upload+"/avatar";
+var upload=static+"/upload";
+var avatar="http://"+host+"/"+upload+"/avatar";
 
 
 module.exports={
