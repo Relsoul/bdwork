@@ -323,7 +323,12 @@ exports.getUserInfo=function(id,socket,io){
     })
 };
 
-exports.getWhisperUser=function(id){
+exports.getWhisperUser=function(id,socket){
+    if(!id===socket.request.session.user._id){
+        return socket.emit("err",{
+            megs:'非法请求'
+        })
+    }
     whisper_model.findWhisper(id,null,true,function(err,whispers){
         if(err){
             socket.emit("err",{

@@ -14,6 +14,10 @@ module.exports=function(app,io) {
     //验证设置session
     io.set("authorization", function (handshakeData, callback) {
         //解析cookie
+        console.log('cookie',handshakeData.headers)
+        if(!handshakeData.headers.cookie||typeof handshakeData.headers.cookie != 'string'){
+            return false
+        }
         handshakeData.cookie = cookie.parse(handshakeData.headers.cookie)
         console.log(handshakeData.cookie)
         var sessionid = handshakeData.cookie['connect.sid']
