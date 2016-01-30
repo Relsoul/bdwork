@@ -84,7 +84,7 @@ function userInfo($scope,server,checkLogin,$stateParams,Upload,$http,$window,$ti
     }
 
     $scope.goWhisper=function(){
-        $state.go('userWhisper',{id: $stateParams.id})
+        $state.go('whisper',{id: $stateParams.id})
     }
 
 
