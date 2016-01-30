@@ -557,7 +557,7 @@ app.directive("ensureUnique", function ($http, $timeout, $window) {
 /**
  * Created by soul on 2016/1/12.
  */
-function userInfo($scope,server,checkLogin,$stateParams,Upload,$http,$window,$timeout){
+function userInfo($scope,server,checkLogin,$stateParams,Upload,$http,$window,$timeout,$state){
     //判断是否登陆
     checkLogin(1500,0,null,function(){
         $state.go("login")
