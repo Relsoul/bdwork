@@ -15,6 +15,7 @@ function userWhisper($scope,$scope,$http,$cookies, socket, $stateParams, server,
     }
     server.getWhisperUser($rootScope.session_user["_id"]);
     $scope.$on("getWhisperUser",function(e,d){
+        console.log('getWhisper',d)
         $scope.users=d;
     })
 
