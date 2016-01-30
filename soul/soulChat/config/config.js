@@ -3,15 +3,17 @@
  */
 
 
+var host='soulchat.cn';
+var static='public';
+var view="./app/views";
+var upload=this.static+"/upload";
+var avatar="http://"+this.host+"/"+this.upload+"/avatar";
 
 
-var obj=function(){
+module.exports={
+    host:host,
+    static:static,
+    view:view,
+    upload:upload,
+    avatar:avatar
 }
-obj.host='soulchat.cn';
-obj.static='public';
-obj.view="./app/views";
-obj.upload=this.static+"/upload";
-obj.avatar="http://"+this.host+"/"+this.upload+"/avatar";
-
-
-module.exports=obj
