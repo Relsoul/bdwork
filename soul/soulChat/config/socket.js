@@ -14,7 +14,7 @@ module.exports=function(app,io) {
     //验证设置session
     io.set("authorization", function (handshakeData, callback) {
         //解析cookie
-        console.log('cookie',handshakeData.headers)
+        //console.log('cookie',handshakeData.headers)
         if(!handshakeData.headers.cookie||typeof handshakeData.headers.cookie != 'string'){
             return false
         }
