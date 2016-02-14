@@ -373,7 +373,7 @@ function chatList($scope, $http, socket, $state, $rootScope, server, checkLogin)
                 isExist:isExist,
                 init:function(data){
                     _rooms_config=data
-                    $scope.rooms_config=$addCategory(_rooms_config)
+                    $scope.rooms_config=addCategory(_rooms_config)
 
                 }
 
