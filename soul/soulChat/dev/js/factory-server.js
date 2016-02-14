@@ -37,11 +37,12 @@ app.factory("server",function($rootScope,socket,$cacheFactory,$interval,$state,$
                     roomId=_data.roomId,
                     _user=_data.user;
                     var is_exist;
-                    cache.get(roomId).user.forEach(function(e){
-                        if(e.userId===_user.userId){
+                    cache.get(roomId).user.forEach(function(e,i){
+                        if(e.userId==_user.userId){
                             is_exist=true
                         }
                     })
+                    
                     if(!is_exist){
                         console.log("没存在")
                         cache.get(roomId).user.push(_user)
