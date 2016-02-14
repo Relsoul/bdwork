@@ -28,7 +28,7 @@ function chatList($scope, $http, socket, $state, $rootScope, server, checkLogin)
                     return _rooms_config.categorys
                 }
                 var getRoom=function(index){
-                    return _rooms_config.categorys[index]
+                    return _rooms_config.categorys[index].rooms
                 }
                 getRoomUsers().forEach(function(user,i){
                     var room_hash=isExist(user.roomId)
