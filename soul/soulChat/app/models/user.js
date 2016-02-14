@@ -49,7 +49,7 @@ var UserSchema=new mongoose.Schema({
             default:Date.now()
         }
     },
-    whisper:[{type:ObjectId,ref:"Whisper"}],
+    whisper:[{type:ObjectId,ref:"User"}],
     leaveMessage:String
 })
 
@@ -113,6 +113,9 @@ UserSchema.statics={
     },
     getUserRooms:function(cb){
         return this.find({online:true}).populate("_roomId").exec(cb)
+    },
+    getWhisperUser:function(from,cb){
+        this.find({_id:from}).populate('whisper','_id name avatarUrl').exec(cb)
     },
 }
 

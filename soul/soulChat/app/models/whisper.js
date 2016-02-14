@@ -14,21 +14,18 @@ var WhisperSchema = new Schema({
 });
 
 WhisperSchema.statics={
-    findWhisper:function(id,is_read,is_to,cb){
-        var find_val={};
-        if(is_read!=null){
-            find_val.is_read=is_read
-        }
-        if(is_to){
-            find_val.to=id;
-        }else{
-            find_val.form=id;
-        }
-        this.find(find_val).populate([
+    findWhisper:function(from,to,cb){
+        this.find({to:to,from:from}).populate([
             {path: "form", select: "_id name avatarUrl"},
             {path: "to", select: "_id name avatarUrl"}
         ]).exec(cb)
     },
+
+    setWhidperRead:function(from,to,cb){
+        this.update({to:to},{from:from},{$set:{is_read:true}},function(err){
+            cb(err)
+        })
+    }
 
 }
 

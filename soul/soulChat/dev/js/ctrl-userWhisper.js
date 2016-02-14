@@ -11,7 +11,9 @@ function userWhisper($scope,$scope,$http,$cookies, socket, $stateParams, server,
 
     //无
     if($stateParams.id){
-        server.getWhisperMessage('$stateParams.id');
+        server.createWhisperMessage({from:$rootScope.session_user["_id"], to:'$stateParams.id'})
+
+        server.getWhisperMessage({from:$rootScope.session_user["_id"], to:'$stateParams.id'});
         $scope.is_chat=true
         $scope.whisper=[]
         $scope.$on("sendWhisperMessage",function(e,d){

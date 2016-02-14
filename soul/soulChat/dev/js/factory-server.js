@@ -31,6 +31,12 @@ app.factory("server",function($rootScope,socket,$cacheFactory,$interval,$state,$
                 console.log(cache.get(roomId),"roomID:",roomId)
                 $rootScope.$broadcast("musicList",true)
                 break;
+            case "updateUserList":
+                var _data=data.data,
+                    roomId=_data.roomId,
+                    _user=_data.user;
+                cache.get(roomId).user.push(_user)
+                break;
             case "sendMessage"||"addImg":
                 var _data=data.data,
                     message=_data.message
@@ -172,5 +178,24 @@ app.factory("server",function($rootScope,socket,$cacheFactory,$interval,$state,$
             })
 
         },
+        getWhisperMessage:function(user_id){
+            socket.emit("soulChat",{
+                action:"getWhisperMessage",
+                data:{
+                    from:user_id.from,
+                    to:user_id.to
+                }
+            })
+        },
+        createWhisperMessage:function(user_id){
+            socket.emit("soulChat",{
+                action:"createWhisperMessage",
+                data:{
+                    from:user_id.from,
+                    to:user_id.to
+                }
+            })
+        }
+
     }
 })

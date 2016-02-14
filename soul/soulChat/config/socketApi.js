@@ -184,7 +184,19 @@ exports.joinRoom=function(join_user,socket){
                         megs:err
                     })
                 }else{
+                    //更新列表功能未完成！
                     socket.join(join_user.join.roomId);
+                    socket.emit(onEvent,{
+                        action: 'sendMessage',
+                        data:{
+                            user:{
+                                username:socket.request.session.user._id,
+                                userId:socket.request.session.user.name,
+                                avatarUrl:socket.request.session.user.avatarUrl
+                            },
+                            roomId:join_user.join.roomId
+                        }
+                    })
                     console.log("加入成功 房间ID为:"+join_user.join.roomId)
                 }
             })
@@ -321,25 +333,21 @@ exports.getUserInfo=function(id,socket,io){
 };
 
 exports.getWhisperUser=function(id,socket){
-    if(!id===socket.request.session.user._id){
+    if(!id===socket.request.session.user._id||!id){
         return socket.emit("err",{
             megs:'非法请求'
         })
     }
-    whisper_model.findWhisper(id,null,true,function(err,whispers){
+    user_model.getWhisperUser(id,function(err,user){
         if(err){
-            socket.emit("err",{
+            return socket.emit("err",{
                 megs:err
             })
-        }else{
-            socket.emit(onEvent,{
-                action:"getWhisperUser",
-                data:{
-                    form:whispers.form,
-                    to:whispers.form
-                }
-            })
         }
+        socket.emit(onEvent,{
+            action:"getWhisperUser",
+            data:user.whisper
+        })
     })
 }
 
@@ -369,7 +377,63 @@ exports.sendWhisperMessage=function(WhisperMessage,socket,io){
             })
 
         })
+    })
+}
 
+exports.getWhisperMessage=function(data,socket,io){
+    var _from_id=data.from,
+        _to_id=data.to;
+    if(!_from_id===socket.request.session.user._id||!_from_id||!_to_id){
+        return socket.emit("err",{
+            megs:'非法请求'
+        })
+    }
+    whisper_model.findWhisper(id,null,true,function(err,whispers){
+        if(err){
+            socket.emit("err",{
+                megs:err
+            })
+        }else{
+            socket.emit(onEvent,{
+                action:"getWhisperUser",
+                data:{
+                    form:whispers.form,
+                    to:whispers.form
+                }
+            })
+        }
+    })
+}
+
+exports.createWhisperMessage=function(data,socket,io){
+    var _from_id=data.from,
+        _to_id=data.to;
+    if(!_from_id===socket.request.session.user._id||!_from_id||!_to_id){
+        return socket.emit("err",{
+            megs:'非法请求'
+        })
+    }
+    user_model.findOne({_id:_from_id},function(err,user){
+        if(err){
+            return socket.emit("err",{
+                megs:err
+            })
+        }
+        if(!user.whisper){
+            var is_whisper=user.whisper.indexOf(_to_id)
+            if(is_whisper===-1){
+                user.whisper.push(_to_id)
+                user.whisper.save(function(err){
+                    if(err){
+                        return socket.emit("err",{
+                            megs:err
+                        })
+                    }
+                })
+            }
+        }else{
+            return false
+        }
 
     })
 
