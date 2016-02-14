@@ -32,6 +32,7 @@ function chatList($scope, $http, socket, $state, $rootScope, server, checkLogin)
                 }
                 getRoomUsers().forEach(function(user,i){
                     var room_hash=isExist(user.roomId)
+                    console.log("room_hash",room_hash)
                     if(room_hash){
                         room_hash.push(user)
                     }else{
