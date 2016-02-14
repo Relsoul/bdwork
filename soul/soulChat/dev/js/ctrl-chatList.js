@@ -25,18 +25,23 @@ function chatList($scope, $http, socket, $state, $rootScope, server, checkLogin)
                     return _rooms_config.users
                 };
                 var getRoomCategorys=function(){
-                    return _rooms_config.categorys.rooms
+                    return _rooms_config.categorys
+                }
+                var getRoom=function(index){
+                    return _rooms_config.categorys[index]
                 }
                 getRoomUsers().forEach(function(user,i){
                     var room_hash=isExist(user.roomId)
                     if(room_hash){
                         room_hash.push(user)
                     }else{
-                        getRoomCategorys().forEach(function(room,k){
-                            if(room._id== user.roomId){
-                                room['user'].push(user)
-                                addHash(room._id,room)
-                            }
+                        getRoomCategorys().forEach(function(category,m){
+                            getRoom(m).forEach(function(room,k){
+                                if(room._id== user.roomId){
+                                    room['user'].push(user)
+                                    addHash(room._id,room)
+                                }
+                            })
                         })
                     }
                 })
