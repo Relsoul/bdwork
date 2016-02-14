@@ -48,6 +48,8 @@ function chatList($scope, $http, socket, $state, $rootScope, server, checkLogin)
             }
         })*/
 
+        
+
     })
 
 

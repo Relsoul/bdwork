@@ -333,11 +333,10 @@ function chatList($scope, $http, socket, $state, $rootScope, server, checkLogin)
     $scope.rooms = [];
     var rooms_hash;
 
-
     $scope.$on("get_rooms", function (err, data) {
         $scope.rooms_config = data
         console.log(7, $scope.rooms_config)
-        $scope.rooms_config.users.forEach(function (e, i) {
+  /*      $scope.rooms_config.users.forEach(function (e, i) {
             if(rooms_hash){
                 console.log("有hash运行")
                 for (var m in rooms_hash) {
@@ -374,7 +373,9 @@ function chatList($scope, $http, socket, $state, $rootScope, server, checkLogin)
                     })
                 })
             }
-        })
+        })*/
+
+        
 
     })
 
@@ -658,7 +659,9 @@ function userWhisper($scope,$scope,$http,$cookies, socket, $stateParams, server,
 
     //无
     if($stateParams.id){
-        server.getWhisperMessage('$stateParams.id');
+        server.createWhisperMessage({from:$rootScope.session_user["_id"], to:'$stateParams.id'})
+
+        server.getWhisperMessage({from:$rootScope.session_user["_id"], to:'$stateParams.id'});
         $scope.is_chat=true
         $scope.whisper=[]
         $scope.$on("sendWhisperMessage",function(e,d){
@@ -887,11 +890,23 @@ app.factory("server",function($rootScope,socket,$cacheFactory,$interval,$state,$
 
                 console.log(cache.get(roomId),"roomID:",roomId)
                 $rootScope.$broadcast("musicList",true)
+                $rootScope.$broadcast("updateUserList",true)
+                break;
+            case "updateUserList":
+                var _data=data.data,
+                    roomId=_data.roomId,
+                    _user=_data.user;
+                $rootScope.$on("updateUserList",function(event,data){
+                    cache.get(roomId).user.push(_user)
+                })
                 break;
             case "sendMessage"||"addImg":
                 var _data=data.data,
                     message=_data.message
                     roomId=_data.roomId
+                if(!cache.get(roomId)){
+                    cache.put(roomId, {})
+                }
                 cache.get(roomId)["message"].push(message)
                 console.log("message",cache.get(roomId)["message"])
                 break
@@ -1029,6 +1044,25 @@ app.factory("server",function($rootScope,socket,$cacheFactory,$interval,$state,$
             })
 
         },
+        getWhisperMessage:function(user_id){
+            socket.emit("soulChat",{
+                action:"getWhisperMessage",
+                data:{
+                    from:user_id.from,
+                    to:user_id.to
+                }
+            })
+        },
+        createWhisperMessage:function(user_id){
+            socket.emit("soulChat",{
+                action:"createWhisperMessage",
+                data:{
+                    from:user_id.from,
+                    to:user_id.to
+                }
+            })
+        }
+
     }
 })
 /**
