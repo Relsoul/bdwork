@@ -187,7 +187,7 @@ exports.joinRoom=function(join_user,socket){
                     //更新列表功能未完成！
                     socket.join(join_user.join.roomId);
                     socket.emit(onEvent,{
-                        action: 'sendMessage',
+                        action: 'updateUserList',
                         data:{
                             user:{
                                 username:socket.request.session.user._id,
