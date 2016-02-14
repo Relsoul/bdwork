@@ -37,7 +37,13 @@ app.factory("server",function($rootScope,socket,$cacheFactory,$interval,$state,$
                     roomId=_data.roomId,
                     _user=_data.user;
                 $rootScope.$on("updateUserList",function(event,data){
-                    cache.get(roomId).user.push(_user)
+                    cache.get(roomId).user.forEach(function(e){
+                        if(e.userId===_user.userId){
+                            return false;
+                        }else{
+                            cache.get(roomId).user.push(_user)
+                        }
+                    })
                 })
                 break;
             case "sendMessage"||"addImg":
