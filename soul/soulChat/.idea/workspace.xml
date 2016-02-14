@@ -33,11 +33,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="factory-server.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="factory-server.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/dev/js/factory-server.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.74700856">
-              <caret line="46" column="42" selection-start-line="46" selection-start-column="42" selection-end-line="46" selection-end-column="42" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="38" column="33" selection-start-line="38" selection-start-column="33" selection-end-line="38" selection-end-column="33" />
               <folding>
                 <element signature="e#0#41#0" expanded="false" />
               </folding>
@@ -87,11 +87,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ctrl-chat.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="ctrl-chat.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/dev/js/ctrl-chat.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="46" column="21" selection-start-line="46" selection-start-column="21" selection-end-line="46" selection-end-column="21" />
+            <state vertical-scroll-proportion="0.5777778">
+              <caret line="47" column="4" selection-start-line="47" selection-start-column="4" selection-end-line="47" selection-end-column="4" />
               <folding />
             </state>
           </provider>
@@ -182,7 +182,6 @@
         <option value="$PROJECT_DIR$/app/views/whisper.html" />
         <option value="$PROJECT_DIR$/app/views/userInfo.html" />
         <option value="$PROJECT_DIR$/app/views/chatIndex.html" />
-        <option value="$PROJECT_DIR$/dev/js/ctrl-chat.js" />
         <option value="$PROJECT_DIR$/dev/js/ctrl-userInfo.js" />
         <option value="$PROJECT_DIR$/app/models/user.js" />
         <option value="$PROJECT_DIR$/app/models/whisper.js" />
@@ -192,6 +191,7 @@
         <option value="$PROJECT_DIR$/app/views/chatRoomList.html" />
         <option value="$PROJECT_DIR$/config/socketApi.js" />
         <option value="$PROJECT_DIR$/dev/js/factory-server.js" />
+        <option value="$PROJECT_DIR$/dev/js/ctrl-chat.js" />
       </list>
     </option>
   </component>
@@ -1027,14 +1027,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/dev/js/ctrl-chat.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="46" column="21" selection-start-line="46" selection-start-column="21" selection-end-line="46" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/config/socketApi.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1055,11 +1047,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/dev/js/factory-server.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.74700856">
-          <caret line="46" column="42" selection-start-line="46" selection-start-column="42" selection-end-line="46" selection-end-column="42" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="38" column="33" selection-start-line="38" selection-start-column="33" selection-end-line="38" selection-end-column="33" />
           <folding>
             <element signature="e#0#41#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dev/js/ctrl-chat.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5777778">
+          <caret line="47" column="4" selection-start-line="47" selection-start-column="4" selection-end-line="47" selection-end-column="4" />
+          <folding />
         </state>
       </provider>
     </entry>

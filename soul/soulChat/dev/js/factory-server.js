@@ -30,13 +30,12 @@ app.factory("server",function($rootScope,socket,$cacheFactory,$interval,$state,$
 
                 console.log(cache.get(roomId),"roomID:",roomId)
                 $rootScope.$broadcast("musicList",true)
-                $rootScope.$broadcast("updateUserList",true)
+                //$rootScope.$broadcast("updateUserList",true)
                 break;
             case "updateUserList":
                 var _data=data.data,
                     roomId=_data.roomId,
                     _user=_data.user;
-                $rootScope.$on("updateUserList",function(event,data){
                     var is_exist;
                     cache.get(roomId).user.forEach(function(e){
                         if(e.userId===_user.userId){
@@ -47,7 +46,6 @@ app.factory("server",function($rootScope,socket,$cacheFactory,$interval,$state,$
                         console.log("没存在")
                         cache.get(roomId).user.push(_user)
                     }
-                })
                 break;
             case "sendMessage"||"addImg":
                 var _data=data.data,
