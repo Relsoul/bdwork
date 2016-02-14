@@ -30,17 +30,23 @@ app.factory("server",function($rootScope,socket,$cacheFactory,$interval,$state,$
 
                 console.log(cache.get(roomId),"roomID:",roomId)
                 $rootScope.$broadcast("musicList",true)
+                $rootScope.$broadcast("updateUserList",true)
                 break;
             case "updateUserList":
                 var _data=data.data,
                     roomId=_data.roomId,
                     _user=_data.user;
-                cache.get(roomId).user.push(_user)
+                $rootScope.$on("updateUserList",function(event,data){
+                    cache.get(roomId).user.push(_user)
+                })
                 break;
             case "sendMessage"||"addImg":
                 var _data=data.data,
                     message=_data.message
                     roomId=_data.roomId
+                if(!cache.get(roomId)){
+                    cache.put(roomId, {})
+                }
                 cache.get(roomId)["message"].push(message)
                 console.log("message",cache.get(roomId)["message"])
                 break
