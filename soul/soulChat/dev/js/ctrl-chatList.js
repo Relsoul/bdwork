@@ -54,7 +54,6 @@ function chatList($scope, $http, socket, $state, $rootScope, server, checkLogin)
                 init:function(data){
                     _rooms_config=data
                     $scope.rooms_config=addCategory(_rooms_config)
-
                 }
 
             }
@@ -63,6 +62,7 @@ function chatList($scope, $http, socket, $state, $rootScope, server, checkLogin)
         $scope.$on("get_rooms", function (err, data) {
             console.log(57,data)
             Hash.init(data)
+            console.log("$scope.rooms_config",$scope.rooms_config)
         })
         return Hash
     }()
