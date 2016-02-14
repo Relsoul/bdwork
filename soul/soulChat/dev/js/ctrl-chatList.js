@@ -38,6 +38,7 @@ function chatList($scope, $http, socket, $state, $rootScope, server, checkLogin)
                         getRoomCategorys().forEach(function(category,m){
                             getRoom(m).forEach(function(room,k){
                                 if(room._id== user.roomId){
+                                    room['user']=[];
                                     room['user'].push(user)
                                     addHash(room._id,room)
                                 }
