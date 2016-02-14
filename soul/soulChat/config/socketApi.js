@@ -184,7 +184,7 @@ exports.joinRoom=function(join_user,socket){
                         megs:err
                     })
                 }else{
-                   console.log("socket",socket);
+                   console.log("socketrooms",socket.rooms);
                     socket.join(join_user.join.roomId);
                     socket.emit(onEvent,{
                         action: 'updateUserList',
