@@ -6,11 +6,10 @@ function chatList($scope, $http, socket, $state, $rootScope, server, checkLogin)
     $scope.rooms = [];
     var rooms_hash;
 
-
     $scope.$on("get_rooms", function (err, data) {
         $scope.rooms_config = data
         console.log(7, $scope.rooms_config)
-        $scope.rooms_config.users.forEach(function (e, i) {
+  /*      $scope.rooms_config.users.forEach(function (e, i) {
             if(rooms_hash){
                 console.log("有hash运行")
                 for (var m in rooms_hash) {
@@ -47,7 +46,7 @@ function chatList($scope, $http, socket, $state, $rootScope, server, checkLogin)
                     })
                 })
             }
-        })
+        })*/
 
     })
 
