@@ -331,12 +331,68 @@ function chatAdminDetail($scope, $stateParams, checkLogin, $state, $http, $timeo
 function chatList($scope, $http, socket, $state, $rootScope, server, checkLogin) {
     server.getRooms()
     $scope.rooms = [];
-    var rooms_hash;
 
-    $scope.$on("get_rooms", function (err, data) {
+
+
+
+
+    var getAllRooms=function(){
+        var Hash=function(){
+            var rooms_hash={};
+            var _rooms_config;
+            var isExist=function(room_id){
+                return rooms_hash[room_id]||false
+            };
+            var addHash=function(room_id,val){
+                return rooms_hash[room_id]=val
+            }
+
+            var addCategory=function(_rooms_config){
+                var getRoomUsers=function(){
+                    return _rooms_config.users
+                };
+                var getRoomCategorys=function(){
+                    return _rooms_config.categorys.rooms
+                }
+                getRoomUsers().forEach(function(user,i){
+                    var room_hash=isExist(user.roomId)
+                    if(room_hash){
+                        room_hash.push(user)
+                    }else{
+                        getRoomCategorys().forEach(function(room,k){
+                            if(room._id== user.roomId){
+                                room['user'].push(user)
+                                addHash(room._id,room)
+                            }
+                        })
+                    }
+                })
+                return _rooms_config
+            }
+            return{
+                isExist:isExist,
+                init:function(data){
+                    _rooms_config=data
+                    $scope.rooms_config=$addCategory(_rooms_config)
+
+                }
+
+            }
+        }()
+
+        $scope.$on("get_rooms", function (err, data) {
+            $scope.rooms_config = data
+            Hash.init(data)
+        })
+        return Hash
+    }()
+
+
+   /* $scope.$on("get_rooms", function (err, data) {
         $scope.rooms_config = data
         console.log(7, $scope.rooms_config)
-  /*      $scope.rooms_config.users.forEach(function (e, i) {
+
+  /!*      $scope.rooms_config.users.forEach(function (e, i) {
             if(rooms_hash){
                 console.log("有hash运行")
                 for (var m in rooms_hash) {
@@ -373,11 +429,8 @@ function chatList($scope, $http, socket, $state, $rootScope, server, checkLogin)
                     })
                 })
             }
-        })*/
-
-        
-
-    })
+        })*!/
+    })*/
 
 
 
