@@ -184,14 +184,14 @@ exports.joinRoom=function(join_user,socket){
                         megs:err
                     })
                 }else{
-                    //更新列表功能未完成！
+                   console.log("socket",socket);
                     socket.join(join_user.join.roomId);
                     socket.emit(onEvent,{
                         action: 'updateUserList',
                         data:{
                             user:{
-                                username:socket.request.session.user._id,
-                                userId:socket.request.session.user.name,
+                                username:socket.request.session.user.name,
+                                userId:socket.request.session.user._id,
                                 avatarUrl:socket.request.session.user.avatarUrl
                             },
                             roomId:join_user.join.roomId
