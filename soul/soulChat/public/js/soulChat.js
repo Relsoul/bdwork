@@ -85,14 +85,17 @@ function chat($scope, $http, $cookies, socket, $stateParams, server, $rootScope,
     }
 
 
+
+    //获取当前房间信息
+    $scope.room = server.getRoom($stateParams.roomId)
+
     server.joinRoom({
         userId: $rootScope.session_user["_id"],
         username: $rootScope.session_user["name"],
         roomId: $stateParams.roomId
     })
 
-    //获取当前房间信息
-    $scope.room = server.getRoom($stateParams.roomId)
+
     setTimeout(function(){
         console.log("now room info",$scope.room)
 
@@ -950,15 +953,23 @@ app.factory("server",function($rootScope,socket,$cacheFactory,$interval,$state,$
 
                 console.log(cache.get(roomId),"roomID:",roomId)
                 $rootScope.$broadcast("musicList",true)
-                $rootScope.$broadcast("updateUserList",true)
+                //$rootScope.$broadcast("updateUserList",true)
                 break;
             case "updateUserList":
                 var _data=data.data,
                     roomId=_data.roomId,
                     _user=_data.user;
-                $rootScope.$on("updateUserList",function(event,data){
-                    cache.get(roomId).user.push(_user)
-                })
+                    var is_exist;
+                    cache.get(roomId).user.forEach(function(e,i){
+                        if(e.userId==_user.userId){
+                            is_exist=true
+                        }
+                    })
+
+                    if(!is_exist){
+                        console.log("没存在")
+                        cache.get(roomId).user.push(_user)
+                    }
                 break;
             case "sendMessage"||"addImg":
                 var _data=data.data,
