@@ -156,7 +156,7 @@ exports.sendMessage=function(message,socket,io){
 };
 
 
-exports.joinRoom=function(join_user,socket){
+exports.joinRoom=function(join_user,socket,io){
         //加入房间
         /*
          *
@@ -184,7 +184,7 @@ exports.joinRoom=function(join_user,socket){
                         megs:err
                     })
                 }else{
-                   console.log("socketrooms",socket.rooms);
+                   console.log("socketrooms",socket.adapter);
                     socket.join(join_user.join.roomId);
                     socket.emit(onEvent,{
                         action: 'updateUserList',
