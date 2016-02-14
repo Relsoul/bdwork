@@ -44,6 +44,7 @@ app.factory("server",function($rootScope,socket,$cacheFactory,$interval,$state,$
                         }
                     })
                     if(!is_exist){
+                        console.log("没存在")
                         cache.get(roomId).user.push(_user)
                     }
                 })
