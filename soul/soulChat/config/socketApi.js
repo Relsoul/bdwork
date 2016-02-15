@@ -388,7 +388,7 @@ exports.getWhisperMessage=function(data,socket,io){
             megs:'非法请求'
         })
     }
-    whisper_model.findWhisper(id,null,true,function(err,whispers){
+    whisper_model.findWhisper(_from_id,_to_id,function(err,whispers){
         if(err){
             socket.emit("err",{
                 megs:err
