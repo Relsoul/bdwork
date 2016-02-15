@@ -344,6 +344,7 @@ exports.getWhisperUser=function(id,socket){
                 megs:err
             })
         }
+        console.log("获取私聊用户",user)
         socket.emit(onEvent,{
             action:"getWhisperUser",
             data:user.whisper
