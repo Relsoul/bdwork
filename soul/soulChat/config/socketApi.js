@@ -13,6 +13,13 @@ var whisper_model=require("../app/models/whisper")
 
 var onEvent="soulChat";
 
+var isUser=function(id,cb){
+    user_model.findOne({_id:id},function(err,user){
+        cb(err.user)
+    })
+}
+
+
 /*
 *  有个bug, 如果id为自己的话不需由浏览器提交 转而用req.session来获取
 * */
@@ -423,13 +430,20 @@ exports.createWhisperMessage=function(data,socket,io){
         if('whisper' in user){
             var is_whisper=user.whisper.indexOf(_to_id)
             if(is_whisper===-1){
-                user.whisper.push(_to_id)
-                user.save(function(err){
-                    if(err){
+                isUser(_to_id,function(err,to_user){
+                    if(!to_user||to_user.length==0){
                         return socket.emit("err",{
-                            megs:err
+                            megs:'无法找到此用户'
                         })
                     }
+                    user.whisper.push(_to_id)
+                    user.save(function(err){
+                        if(err){
+                            return socket.emit("err",{
+                                megs:err
+                            })
+                        }
+                    })
                 })
             }
         }else{
