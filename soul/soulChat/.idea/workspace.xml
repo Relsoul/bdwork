@@ -45,11 +45,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="socketApi.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="socketApi.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/config/socketApi.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="179" column="61" selection-start-line="179" selection-start-column="61" selection-end-line="179" selection-end-column="61" />
+            <state vertical-scroll-proportion="0.4686941">
+              <caret line="389" column="5" selection-start-line="389" selection-start-column="5" selection-end-line="389" selection-end-column="5" />
               <folding>
                 <element signature="e#0#41#0" expanded="false" />
               </folding>
@@ -107,11 +107,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="socket.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="socket.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/config/socket.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.84444445">
-              <caret line="41" column="2" selection-start-line="41" selection-start-column="0" selection-end-line="66" selection-end-column="8" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="29" column="53" selection-start-line="29" selection-start-column="46" selection-end-line="29" selection-end-column="53" />
               <folding />
             </state>
           </provider>
@@ -188,10 +188,10 @@
         <option value="$PROJECT_DIR$/node_modules/async/dist/async.min.js" />
         <option value="$PROJECT_DIR$/dev/js/ctrl-chatList.js" />
         <option value="$PROJECT_DIR$/app/views/chatRoomList.html" />
-        <option value="$PROJECT_DIR$/config/socketApi.js" />
         <option value="$PROJECT_DIR$/dev/js/ctrl-chat.js" />
         <option value="$PROJECT_DIR$/dev/js/factory-server.js" />
         <option value="$PROJECT_DIR$/config/socket.js" />
+        <option value="$PROJECT_DIR$/config/socketApi.js" />
       </list>
     </option>
   </component>
@@ -212,8 +212,8 @@
     <order />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="370" />
-    <option name="y" value="29" />
+    <option name="x" value="43" />
+    <option name="y" value="7" />
     <option name="width" value="1378" />
     <option name="height" value="744" />
   </component>
@@ -625,7 +625,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="370" y="29" width="1378" height="744" extended-state="0" />
+    <frame x="43" y="7" width="1378" height="744" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Gulp" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -1044,21 +1044,21 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/config/socketApi.js">
+    <entry file="file://$PROJECT_DIR$/config/socket.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="179" column="61" selection-start-line="179" selection-start-column="61" selection-end-line="179" selection-end-column="61" />
-          <folding>
-            <element signature="e#0#41#0" expanded="false" />
-          </folding>
+          <caret line="29" column="53" selection-start-line="29" selection-start-column="46" selection-end-line="29" selection-end-column="53" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/config/socket.js">
+    <entry file="file://$PROJECT_DIR$/config/socketApi.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.84444445">
-          <caret line="41" column="2" selection-start-line="41" selection-start-column="0" selection-end-line="66" selection-end-column="8" />
-          <folding />
+        <state vertical-scroll-proportion="0.4686941">
+          <caret line="389" column="5" selection-start-line="389" selection-start-column="5" selection-end-line="389" selection-end-column="5" />
+          <folding>
+            <element signature="e#0#41#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>

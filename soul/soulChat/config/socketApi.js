@@ -190,9 +190,9 @@ exports.joinRoom=function(join_user,socket,io){
                         action: 'updateUserList',
                         data:{
                             user:{
-                                username:socket.request.session.user.name,
-                                userId:socket.request.session.user._id,
-                                avatarUrl:socket.request.session.user.avatarUrl
+                                username:socket.session.user.name,
+                                userId:socket.session.user._id,
+                                avatarUrl:socket.session.user.avatarUrl
                             },
                             roomId:join_user.join.roomId
                         }
@@ -333,7 +333,7 @@ exports.getUserInfo=function(id,socket,io){
 };
 
 exports.getWhisperUser=function(id,socket){
-    if(!id===socket.request.session.user._id||!id){
+    if(!id===socket.session.user._id||!id){
         return socket.emit("err",{
             megs:'非法请求'
         })
@@ -383,7 +383,7 @@ exports.sendWhisperMessage=function(WhisperMessage,socket,io){
 exports.getWhisperMessage=function(data,socket,io){
     var _from_id=data.from,
         _to_id=data.to;
-    if(!_from_id===socket.request.session.user._id||!_from_id||!_to_id){
+    if(!_from_id===socket.session.user._id||!_from_id||!_to_id){
         return socket.emit("err",{
             megs:'非法请求'
         })
@@ -408,7 +408,7 @@ exports.getWhisperMessage=function(data,socket,io){
 exports.createWhisperMessage=function(data,socket,io){
     var _from_id=data.from,
         _to_id=data.to;
-    if(!_from_id===socket.request.session.user._id||!_from_id||!_to_id){
+    if(!_from_id===socket.session.user._id||!_from_id||!_to_id){
         return socket.emit("err",{
             megs:'非法请求'
         })
