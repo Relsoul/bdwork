@@ -88,8 +88,8 @@
       <file leaf-file-name="socketApi.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/config/socketApi.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.7076923">
-              <caret line="433" column="14" selection-start-line="433" selection-start-column="14" selection-end-line="433" selection-end-column="14" />
+            <state vertical-scroll-proportion="0.5777778">
+              <caret line="426" column="28" selection-start-line="426" selection-start-column="28" selection-end-line="426" selection-end-column="28" />
               <folding>
                 <element signature="e#0#41#0" expanded="false" />
               </folding>
@@ -160,8 +160,8 @@
         <option value="$PROJECT_DIR$/config/socket.js" />
         <option value="$PROJECT_DIR$/app/views/userInfo.html" />
         <option value="$PROJECT_DIR$/dev/js/factory-server.js" />
-        <option value="$PROJECT_DIR$/config/socketApi.js" />
         <option value="$PROJECT_DIR$/dev/js/ctrl-userWhisper.js" />
+        <option value="$PROJECT_DIR$/config/socketApi.js" />
       </list>
     </option>
   </component>
@@ -1029,8 +1029,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/config/socketApi.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7076923">
-          <caret line="433" column="14" selection-start-line="433" selection-start-column="14" selection-end-line="433" selection-end-column="14" />
+        <state vertical-scroll-proportion="0.5777778">
+          <caret line="426" column="28" selection-start-line="426" selection-start-column="28" selection-end-line="426" selection-end-column="28" />
           <folding>
             <element signature="e#0#41#0" expanded="false" />
           </folding>

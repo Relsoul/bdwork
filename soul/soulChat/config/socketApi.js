@@ -423,7 +423,7 @@ exports.createWhisperMessage=function(data,socket,io){
             var is_whisper=user.whisper.indexOf(_to_id)
             if(is_whisper===-1){
                 user.whisper.push(_to_id)
-                user.whisper.save(function(err){
+                user.save(function(err){
                     if(err){
                         return socket.emit("err",{
                             megs:err
