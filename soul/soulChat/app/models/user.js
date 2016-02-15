@@ -115,7 +115,7 @@ UserSchema.statics={
         return this.find({online:true}).populate("_roomId").exec(cb)
     },
     getWhisperUser:function(from,cb){
-        this.find({_id:from}).populate('whisper','_id name avatarUrl').exec(cb)
+        this.findOne({_id:from}).populate('whisper','_id name avatarUrl').exec(cb)
     },
 }
 
