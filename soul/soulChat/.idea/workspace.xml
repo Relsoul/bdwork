@@ -41,11 +41,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="whisper.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="whisper.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/views/whisper.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.17055656">
-              <caret line="4" column="152" selection-start-line="4" selection-start-column="152" selection-end-line="4" selection-end-column="152" />
+            <state vertical-scroll-proportion="22.178572">
+              <caret line="5" column="51" selection-start-line="5" selection-start-column="51" selection-end-line="5" selection-end-column="51" />
               <folding />
             </state>
           </provider>
@@ -85,11 +85,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="socketApi.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="socketApi.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/config/socketApi.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="346" column="27" selection-start-line="346" selection-start-column="21" selection-end-line="346" selection-end-column="27" />
+            <state vertical-scroll-proportion="0.48034188">
+              <caret line="420" column="14" selection-start-line="420" selection-start-column="14" selection-end-line="420" selection-end-column="14" />
               <folding>
                 <element signature="e#0#41#0" expanded="false" />
               </folding>
@@ -179,9 +179,9 @@
         <option value="$PROJECT_DIR$/app/views/userInfo.html" />
         <option value="$PROJECT_DIR$/dev/js/factory-server.js" />
         <option value="$PROJECT_DIR$/dev/js/ctrl-userWhisper.js" />
-        <option value="$PROJECT_DIR$/config/socketApi.js" />
         <option value="$PROJECT_DIR$/app/models/user.js" />
         <option value="$PROJECT_DIR$/app/views/whisper.html" />
+        <option value="$PROJECT_DIR$/config/socketApi.js" />
       </list>
     </option>
   </component>
@@ -1013,16 +1013,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/config/socketApi.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="346" column="27" selection-start-line="346" selection-start-column="21" selection-end-line="346" selection-end-column="27" />
-          <folding>
-            <element signature="e#0#41#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/models/whisper.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1039,6 +1029,14 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/whisper.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="22.178572">
+          <caret line="5" column="51" selection-start-line="5" selection-start-column="51" selection-end-line="5" selection-end-column="51" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/dev/js/ctrl-userWhisper.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1049,11 +1047,13 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/whisper.html">
+    <entry file="file://$PROJECT_DIR$/config/socketApi.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.17055656">
-          <caret line="4" column="152" selection-start-line="4" selection-start-column="152" selection-end-line="4" selection-end-column="152" />
-          <folding />
+        <state vertical-scroll-proportion="0.48034188">
+          <caret line="420" column="14" selection-start-line="420" selection-start-column="14" selection-end-line="420" selection-end-column="14" />
+          <folding>
+            <element signature="e#0#41#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>

@@ -415,7 +415,7 @@ exports.createWhisperMessage=function(data,socket,io){
         })
     }
     user_model.findOne({_id:_from_id},function(err,user){
-        if(err){
+        if(err||!user||user.length==0){
             return socket.emit("err",{
                 megs:err
             })
