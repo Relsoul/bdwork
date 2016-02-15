@@ -719,7 +719,6 @@ function userWhisper($scope,$scope,$http,$cookies, socket, $stateParams, server,
         $state.go("login")
     })
 
-    var stateParams_id="null"
 
     //无
     if($stateParams.id){
@@ -730,7 +729,6 @@ function userWhisper($scope,$scope,$http,$cookies, socket, $stateParams, server,
         $scope.$on("sendWhisperMessage",function(e,d){
             $scope.whisper.push(d)
         })
-        stateParams_id=$stateParams.id
     }
 
 
@@ -751,7 +749,6 @@ function userWhisper($scope,$scope,$http,$cookies, socket, $stateParams, server,
     $scope.$on("getWhisperUser",function(e,d){
         console.log('getWhisperUser',d)
         $scope.users=d;
-        console.log("stateParams_id",stateParams_id)
     })
 
 }

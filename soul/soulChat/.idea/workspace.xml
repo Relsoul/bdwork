@@ -45,7 +45,7 @@
         <entry file="file://$PROJECT_DIR$/app/views/whisper.html">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.17055656">
-              <caret line="4" column="208" selection-start-line="4" selection-start-column="208" selection-end-line="4" selection-end-column="208" />
+              <caret line="4" column="138" selection-start-line="4" selection-start-column="138" selection-end-line="4" selection-end-column="138" />
               <folding />
             </state>
           </provider>
@@ -65,7 +65,7 @@
         <entry file="file://$PROJECT_DIR$/dev/js/ctrl-userWhisper.js">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="42" column="51" selection-start-line="42" selection-start-column="51" selection-end-line="42" selection-end-column="51" />
+              <caret line="12" column="7" selection-start-line="12" selection-start-column="7" selection-end-line="12" selection-end-column="22" />
               <folding>
                 <element signature="n#!!doc;n#userWhisper#0" expanded="false" />
               </folding>
@@ -1014,14 +1014,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/dev/js/router.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="47" column="32" selection-start-line="47" selection-start-column="25" selection-end-line="47" selection-end-column="32" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/musicPlay.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-14.464286">
@@ -1050,10 +1042,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/dev/js/router.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="47" column="32" selection-start-line="47" selection-start-column="25" selection-end-line="47" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/dev/js/ctrl-userWhisper.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="42" column="51" selection-start-line="42" selection-start-column="51" selection-end-line="42" selection-end-column="51" />
+          <caret line="12" column="7" selection-start-line="12" selection-start-column="7" selection-end-line="12" selection-end-column="22" />
           <folding>
             <element signature="n#!!doc;n#userWhisper#0" expanded="false" />
           </folding>
@@ -1063,7 +1063,7 @@
     <entry file="file://$PROJECT_DIR$/app/views/whisper.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.17055656">
-          <caret line="4" column="208" selection-start-line="4" selection-start-column="208" selection-end-line="4" selection-end-column="208" />
+          <caret line="4" column="138" selection-start-line="4" selection-start-column="138" selection-end-line="4" selection-end-column="138" />
           <folding />
         </state>
       </provider>
