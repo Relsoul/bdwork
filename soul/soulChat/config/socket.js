@@ -11,8 +11,35 @@ var socketApi=require("./socketApi")
 
 module.exports=function(app,io) {
 
-    //验证设置session
-    io.set("authorization", function (handshakeData, callback) {
+    //验证设置session 使用官方推荐API
+    io.use(function(socket,next){
+        console.log("socket 登陆验证");
+        if(!socket.handshake.headers.cookie||typeof socket.handshake.headers.cookie != 'string'){
+            return false
+        }
+        var user_cookie=cookie.parse(socket.handshake.headers.cookie);
+        if(!('connect.sid' in user_cookie)){
+            return false
+        }
+        var sessionid = user_cookie['connect.sid'];
+        if (sessionid) {
+            var sid = sessionid.split(':')[1].split('.')[0];
+            //用mongodb查询语法
+            mongoose.connection.db.collection("sessions", function (err, collection) {
+                collection.find({_id: sid}).toArray(function (err, results) {
+                    console.log('session',err,results)
+                    if (!results.length||err) {
+                        return false
+                    } else {
+                        socket.session = JSON.parse(results[0].session)
+                        console.log(23, socket.session)
+                        next()
+                    }
+                });
+            });
+        }
+    })
+/*    io.set("authorization", function (handshakeData, callback) {
         //解析cookie
         //console.log('cookie',handshakeData.headers)
         if(!handshakeData.headers.cookie||typeof handshakeData.headers.cookie != 'string'){
@@ -37,7 +64,7 @@ module.exports=function(app,io) {
                 });
             });
         }
-    })
+    })*/
 
     io.sockets.on("connection", function (socket) {
 
@@ -55,6 +82,7 @@ module.exports=function(app,io) {
 
         //获取用户session
         //var _name=socket.request.session.user.name;
+        console.log("session",socket.session)
 
 
     })
