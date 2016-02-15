@@ -743,6 +743,7 @@ function userWhisper($scope,$scope,$http,$cookies, socket, $stateParams, server,
         })
         $scope.send_message = ""
     }
+    stateParams_id=$stateParams.id||""
 
     server.getWhisperUser($rootScope.session_user["_id"]);
     $scope.$on("getWhisperUser",function(e,d){
