@@ -81,6 +81,8 @@ app.factory("server",function($rootScope,socket,$cacheFactory,$interval,$state,$
             case 'sendWhisperMessage':
                 var _data=data.data;
                 $rootScope.$broadcast("sendWhisperMessage",_data);
+            case "getWhisperMessage":
+                var _data=data.data;
         }
     })
 

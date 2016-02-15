@@ -419,7 +419,7 @@ exports.createWhisperMessage=function(data,socket,io){
                 megs:err
             })
         }
-        if(!user.whisper){
+        if('whisper' in user){
             var is_whisper=user.whisper.indexOf(_to_id)
             if(is_whisper===-1){
                 user.whisper.push(_to_id)
