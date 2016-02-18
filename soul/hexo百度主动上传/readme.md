@@ -1,4 +1,8 @@
 
+
+# 具体使用说明
+请看我[BLOG](http://emufan.com/2016/02/18/%E7%99%BE%E5%BA%A6%E4%B8%BB%E5%8A%A8%E6%8E%A8%E9%80%81hexo%E7%94%9F%E6%88%90%E7%9A%84%E6%96%87%E7%AB%A0/)
+
 # 依赖
 [hexo-generator-baidu-sitemap](https://github.com/coneycode/hexo-generator-baidu-sitemap)
 cnpm install cheerio
