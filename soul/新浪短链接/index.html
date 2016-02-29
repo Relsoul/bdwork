@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:wb="http://open.weibo.com/wb">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <title>relsoul长连接服务</title>
+    <link rel="stylesheet" href="libs/Materialize/dist/css/materialize.min.css"/>
+    <script src="libs/jquery/dist/jquery.min.js"></script>
+    <script src="libs/Materialize/dist/js/materialize.min.js"></script>
+    <style>
+        * {
+            font-family: "微软雅黑";
+        }
+
+        @font-face {
+            font-family: 'Material Icons';
+            font-style: normal;
+            font-weight: 400;
+            src: local("Material Icons"), local("MaterialIcons-Regular"), url(./libs/font/s.woff2) format("woff2");
+        }
+
+        .material-icons {
+            font-family: 'Material Icons';
+            font-weight: normal;
+            font-style: normal;
+            font-size: 1rem;
+            line-height: 1;
+            letter-spacing: normal;
+            text-transform: none;
+            display: inline-block;
+            white-space: nowrap;
+            word-wrap: normal;
+            direction: ltr;
+            -webkit-font-feature-settings: 'liga';
+            -webkit-font-smoothing: antialiased;
+        }
+
+    </style>
+</head>
+<body>
+<header>
+    <nav>
+        <div class="nav-wrapper">
+            <a href="#" class="brand-logo">RelSoul短链接生成服务</a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li><a href="#">短链接</a></li>
+                <li><a href=""></a></li>
+            </ul>
+        </div>
+    </nav>
+</header>
+<div class="container">
+    <div class="row">
+        <div class="col s12">
+            <div class="card-panel center-align">
+                <p class="blue-text text-darken-2 ">Hello 欢迎使用relsoul短链接生成服务</p>
+                <p><wb:share-button appkey="3280957344" addition="number" type="button" default_text="我在使用relsoul短链接服务,你也快来使用吧！http://t.relsoul.com"></wb:share-button></p>
+            </div>
+            <div class="card-panel center-align " id="error_message_wrap" style="display: none" >
+                <span>Error:</span><span class=" red-text text-darken-3 " id="error_message">no message</span>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <form class="col s12">
+            <div class="row">
+                <div class="input-field col m6 offset-m3 s12">
+                    <i class="material-icons prefix">code</i>
+                    <input id="short_url_txt" type="text" class="validate">
+                    <label for="short_url_txt">请输入需要转换的链接</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s5 m6 offset-m5 offset-s3">
+                    <a class="waves-effect waves-light btn" id="short_url"><i class="material-icons right">swap_horiz</i>转换</a>
+                </div>
+            </div>
+
+
+        </form>
+    </div>
+</div>
+<footer class="page-footer" style="position: fixed;bottom: 0;left: 0;width: 100%">
+    <div class="footer-copyright">
+        <div class="container">
+            © 2016 Copyright Text
+            <a class="grey-text text-lighten-4 right" href="http://www.miitbeian.gov.cn/">湘ICP备16001273号</a>
+        </div>
+    </div>
+</footer>
+<script>
+    $(function(){
+        (function(window,$){
+
+
+
+            var ErrorMessage=function(){
+                var $info_elem=$("#error_message");
+                var $info_elem_wrap=$("#error_message_wrap");
+                var setErrorMessage=function(message){
+                    showErrorMessage(800);
+                    $info_elem.html(message);
+                    hideErrorMessage(5000,800);
+                };
+                var showErrorMessage=function(time){
+                    $info_elem_wrap.show(time)
+                };
+                var hideErrorMessage=function(){
+                    var timer;
+                    return function(delay,time){
+                        if(timer){
+                            return false
+                        }
+                        timer=setTimeout(function(){
+                            $info_elem_wrap.hide(time);
+                            clearTimeout(timer);
+                            timer=null;
+                        },delay)
+                    }
+                }();
+                return{
+                    setErrorMessage:setErrorMessage
+                }
+            }();
+
+            var UrlVal=function(){
+                var $url_elem=$("#short_url_txt");
+
+                var getVal=function(){
+                    return $url_elem.val();
+                };
+                var setVal=function(txt){
+                    return $url_elem.val(txt)
+                }
+                var isUrl=function(){
+                    var _val=getVal();
+                    if(_val.search("http://")>-1){
+                        return true
+                    }
+                    return false;
+
+                };
+
+                return{
+                    getVal:getVal,
+                    isUrl:isUrl,
+                    setVal:setVal
+                }
+            }();
+
+
+
+
+
+            var longToShort=function(api_url,appkey){
+                $("#short_url").on("click",function(){
+                    var long_url=UrlVal.getVal();
+                    console.log(131,long_url);
+                    if(!UrlVal.isUrl()){
+                        return ErrorMessage.setErrorMessage("请输入带http://的链接");
+                    }
+                    console.log(98,long_url);
+                    $.get("http://t.relsoul.com/api/longToShort",{long_url:long_url},function(data){
+                        if("error" in data){
+                            return ErrorMessage.setErrorMessage(data.error)
+                        }
+                        UrlVal.setVal(data.urls[0].url_short)
+                        console.log(98,data)
+                    })
+                })
+            };
+
+            longToShort()
+
+
+
+
+        })(window,$)
+    })
+</script>
+</body>
+</html>
