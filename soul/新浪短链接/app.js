@@ -52,7 +52,7 @@ app.get("/api/longToShort",accessToken,function(req,res){
         }
         if(data.statusCode==400){
             return res.json({
-                error:"please input like http://xxx.com/, and must add http:// at the beginning of  url"
+                error:"please contact adminstrator email admin@emufan.com "
             })
         }
         res.json(JSON.parse(data.body));
@@ -76,7 +76,12 @@ app.get("/oauth",function(req,res){
             redirect_uri:developer_info.redirect_uri,
         }
     },function(err,data){
-        app.set("accessToken",JSON.parse(data.body))
+        var _d=JSON.parse(data.body)
+        if("error_code" in _d){
+            return res.json(_d)
+        }
+
+        app.set("accessToken",_d)
         console.log(52,app.get("accessToken"))
         res.json(JSON.parse(data.body))
     });
