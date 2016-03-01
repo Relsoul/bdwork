@@ -134,7 +134,8 @@
                 }
                 var isUrl=function(){
                     var _val=getVal();
-                    if(_val.search("http://")>-1){
+                    var uri=_val.match(/\w+/i)[0]
+                    if(uri=="http"||uri=="https"){
                         return true
                     }
                     return false;
@@ -159,13 +160,13 @@
                     if(!UrlVal.isUrl()){
                         return ErrorMessage.setErrorMessage("请输入带http://的链接");
                     }
-                    console.log(98,long_url);
+                    //console.log(98,long_url);
                     $.get("http://t.relsoul.com/api/longToShort",{long_url:long_url},function(data){
                         if("error" in data){
                             return ErrorMessage.setErrorMessage(data.error)
                         }
                         UrlVal.setVal(data.urls[0].url_short)
-                        console.log(98,data)
+                        //console.log(98,data)
                     })
                 })
             };

@@ -6,8 +6,8 @@ var path=require("path");
 var app=express();
 
 var developer_info={
-    app_key:"3280957344",
-    app_secret:"939ab18691ad498636c900f4250b4a64",
+    app_key:"",
+    app_secret:"",
     grant_type:"authorization_code",
     redirect_uri:"http://t.relsoul.com/oauth",
 }
