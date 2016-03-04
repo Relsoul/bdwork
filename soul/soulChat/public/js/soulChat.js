@@ -960,6 +960,8 @@ app.factory("server",function($rootScope,socket,$cacheFactory,$interval,$state,$
                 var _data=data.data,
                     roomId=_data.roomId,
                     _user=_data.user;
+                console.log(39,"updateUserList",_data);
+                console.log(40,"getRoom信息",cache.get(roomId));
                     var is_exist;
                     cache.get(roomId).user.forEach(function(e,i){
                         if(e.userId==_user.userId){
