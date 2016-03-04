@@ -57,6 +57,7 @@ function chat($scope, $http, $cookies, socket, $stateParams, server, $rootScope,
     });
 
     $scope.$on("updateUserList",function(event,data){
+        
         alert("get room")
         var _user=data;
         var is_exist;
