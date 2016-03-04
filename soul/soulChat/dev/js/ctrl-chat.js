@@ -55,7 +55,7 @@ function chat($scope, $http, $cookies, socket, $stateParams, server, $rootScope,
         roomId: $stateParams.roomId
     })
 
-    
+
     setTimeout(function(){
         console.log("now room info",$scope.room)
 

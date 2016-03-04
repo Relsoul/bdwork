@@ -98,7 +98,7 @@ function chat($scope, $http, $cookies, socket, $stateParams, server, $rootScope,
         roomId: $stateParams.roomId
     })
 
-    
+
     setTimeout(function(){
         console.log("now room info",$scope.room)
 
@@ -966,6 +966,16 @@ app.factory("server",function($rootScope,socket,$cacheFactory,$interval,$state,$
                     _user=_data.user;
                 console.log(39,"updateUserList",_data);
                 console.log(40,"getRoom前信息",cache.get(roomId));
+                    var timer;
+                    if(! "user" in cache.get(roomId)){
+                        timer=setInterval(function(){
+                            if("user" in cache.get(roomId)){
+                                clearInterval(timer);
+                                timer=null
+                            }
+                        },500)
+                    };
+                
                     var is_exist;
                     cache.get(roomId).user.forEach(function(e,i){
                         if(e.userId==_user.userId){
