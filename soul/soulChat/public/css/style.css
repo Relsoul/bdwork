@@ -25,9 +25,9 @@
   margin-bottom: 200px; }
 
 @media (max-width: 768px) {
-  .roomNumber {
-    display: none; }
-
+  /*.roomNumber{
+    display: none;
+  }*/
   .message_time {
     font-size: 20%; } }
 .now_play {
