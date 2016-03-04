@@ -39,16 +39,8 @@ app.factory("server",function($rootScope,socket,$cacheFactory,$interval,$state,$
                     _user=_data.user;
                 console.log(39,"updateUserList",_data);
                 console.log(40,"getRoom前信息",cache.get(roomId));
-                    var is_exist;
-                    cache.get(roomId).user.forEach(function(e,i){
-                        if(e.userId==_user.userId){
-                            is_exist=true
-                        }
-                    })
-                    if(!is_exist){
-                        cache.get(roomId).user.push(_user)
-                    }
-                $rootScope.$broadcast("updateUserList",true)
+
+                $rootScope.$broadcast("updateUserList",_user)
                 console.log(40,"getRoom后信息",cache.get(roomId));
                 break;
             case "sendMessage"||"addImg":

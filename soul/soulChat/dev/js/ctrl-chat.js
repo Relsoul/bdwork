@@ -58,8 +58,17 @@ function chat($scope, $http, $cookies, socket, $stateParams, server, $rootScope,
         });
     });
 
-    $scope.$on("updateUserList",function(){
-        $scope.room = server.getRoom($stateParams.roomId)
+    $scope.$on("updateUserList",function(event,data){
+        var _user=data;
+        var is_exist;
+        $scope.room.user.forEach(function(e,i){
+            if(e.userId==_user.userId){
+                is_exist=true
+            }
+        })
+        if(!is_exist){
+            $scope.room.user.push(_user)
+        }
     });
 
 
