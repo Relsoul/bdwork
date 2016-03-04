@@ -102,8 +102,7 @@ function chat($scope, $http, $cookies, socket, $stateParams, server, $rootScope,
     });
 
     $scope.$on("updateUserList",function(){
-        //$scope.room = server.getRoom($stateParams.roomId)
-
+        $scope.room = server.getRoom($stateParams.roomId)
     });
 
 
