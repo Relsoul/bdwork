@@ -102,9 +102,10 @@ function chat($scope, $http, $cookies, socket, $stateParams, server, $rootScope,
     });
 
     $scope.$on("updateUserList",function(){
-
+        alert("更新成功")
     });
 
+    
 
     setTimeout(function(){
         console.log("now room info",$scope.room)
