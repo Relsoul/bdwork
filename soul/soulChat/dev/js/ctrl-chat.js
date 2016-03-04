@@ -47,9 +47,7 @@ function chat($scope, $http, $cookies, socket, $stateParams, server, $rootScope,
 
     //获取当前房间信息
     $scope.room = server.getRoom($stateParams.roomId)
-
-
-
+    
     $scope.$on("getRoomDone",function(){
         server.joinRoom({
             userId: $rootScope.session_user["_id"],
@@ -69,6 +67,7 @@ function chat($scope, $http, $cookies, socket, $stateParams, server, $rootScope,
         if(!is_exist){
             $scope.room.user.push(_user)
         }
+        console.log("更新后的$scope.room",$scope.room)
     });
 
 
