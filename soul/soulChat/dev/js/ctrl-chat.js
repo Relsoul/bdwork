@@ -43,22 +43,25 @@ function chat($scope, $http, $cookies, socket, $stateParams, server, $rootScope,
 
 
 
+
+
+    //获取当前房间信息
+    $scope.room = server.getRoom($stateParams.roomId)
+
+
     server.joinRoom({
         userId: $rootScope.session_user["_id"],
         username: $rootScope.session_user["name"],
         roomId: $stateParams.roomId
     })
 
-    //获取当前房间信息
-    $scope.room = server.getRoom($stateParams.roomId)
-
     
-
     setTimeout(function(){
         console.log("now room info",$scope.room)
 
     },2000)
 
+    console.log(40,"getRoom聊天页信息",$scope.room);
 
 
     //发送消息

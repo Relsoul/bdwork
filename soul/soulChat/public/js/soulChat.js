@@ -86,22 +86,25 @@ function chat($scope, $http, $cookies, socket, $stateParams, server, $rootScope,
 
 
 
+
+
+    //获取当前房间信息
+    $scope.room = server.getRoom($stateParams.roomId)
+
+
     server.joinRoom({
         userId: $rootScope.session_user["_id"],
         username: $rootScope.session_user["name"],
         roomId: $stateParams.roomId
     })
 
-    //获取当前房间信息
-    $scope.room = server.getRoom($stateParams.roomId)
-
     
-
     setTimeout(function(){
         console.log("now room info",$scope.room)
 
     },2000)
 
+    console.log(40,"getRoom聊天页信息",$scope.room);
 
 
     //发送消息
@@ -962,7 +965,7 @@ app.factory("server",function($rootScope,socket,$cacheFactory,$interval,$state,$
                     roomId=_data.roomId,
                     _user=_data.user;
                 console.log(39,"updateUserList",_data);
-                console.log(40,"getRoom信息",cache.get(roomId));
+                console.log(40,"getRoom前信息",cache.get(roomId));
                     var is_exist;
                     cache.get(roomId).user.forEach(function(e,i){
                         if(e.userId==_user.userId){
@@ -972,6 +975,7 @@ app.factory("server",function($rootScope,socket,$cacheFactory,$interval,$state,$
                     if(!is_exist){
                         cache.get(roomId).user.push(_user)
                     }
+                console.log(40,"getRoom后信息",cache.get(roomId));
                 break;
             case "sendMessage"||"addImg":
                 var _data=data.data,
