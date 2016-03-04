@@ -30,7 +30,8 @@ app.factory("server",function($rootScope,socket,$cacheFactory,$interval,$state,$
 
                 console.log(cache.get(roomId),"roomID:",roomId)
                 $rootScope.$broadcast("musicList",true)
-                //$rootScope.$broadcast("updateUserList",true)
+                $rootScope.$broadcast("getRoomDone",true)
+
                 break;
             case "updateUserList":
                 var _data=data.data,
@@ -38,16 +39,6 @@ app.factory("server",function($rootScope,socket,$cacheFactory,$interval,$state,$
                     _user=_data.user;
                 console.log(39,"updateUserList",_data);
                 console.log(40,"getRoom前信息",cache.get(roomId));
-                    var timer;
-                    if(! "user" in cache.get(roomId)){
-                        timer=setInterval(function(){
-                            if("user" in cache.get(roomId)){
-                                clearInterval(timer);
-                                timer=null
-                            }
-                        },500)
-                    };
-                
                     var is_exist;
                     cache.get(roomId).user.forEach(function(e,i){
                         if(e.userId==_user.userId){
@@ -57,6 +48,7 @@ app.factory("server",function($rootScope,socket,$cacheFactory,$interval,$state,$
                     if(!is_exist){
                         cache.get(roomId).user.push(_user)
                     }
+                $rootScope.$broadcast("updateUserList",true)
                 console.log(40,"getRoom后信息",cache.get(roomId));
                 break;
             case "sendMessage"||"addImg":

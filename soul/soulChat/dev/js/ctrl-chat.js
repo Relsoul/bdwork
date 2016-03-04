@@ -49,11 +49,18 @@ function chat($scope, $http, $cookies, socket, $stateParams, server, $rootScope,
     $scope.room = server.getRoom($stateParams.roomId)
 
 
-    server.joinRoom({
-        userId: $rootScope.session_user["_id"],
-        username: $rootScope.session_user["name"],
-        roomId: $stateParams.roomId
-    })
+
+    $scope.$on("getRoomDone",function(){
+        server.joinRoom({
+            userId: $rootScope.session_user["_id"],
+            username: $rootScope.session_user["name"],
+            roomId: $stateParams.roomId
+        });
+    });
+
+    $scope.$on("updateUserList",function(){
+
+    });
 
 
     setTimeout(function(){
