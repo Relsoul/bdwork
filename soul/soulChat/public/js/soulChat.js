@@ -101,10 +101,16 @@ function chat($scope, $http, $cookies, socket, $stateParams, server, $rootScope,
 
     $scope.$on("updateUserList",function(event,data){
         
-        console.log(61,$scope.room.user)
         var _user=data;
         var is_exist;
-        $scope.room.user.push(_user)
+        $scope.room.user.forEach(function(e,i){
+            if(e.userId==_user.userId){
+                is_exist=true
+            }
+        })
+        if(!is_exist){
+            $scope.room.user.push(_user)
+        }
         console.log("更新后的$scope.room",$scope.room)
     });
 
@@ -976,11 +982,7 @@ app.factory("server",function($rootScope,socket,$cacheFactory,$interval,$state,$
                 var _data=data.data,
                     roomId=_data.roomId,
                     _user=_data.user;
-                console.log(39,"updateUserList",_data);
-                console.log(40,"getRoom前信息",cache.get(roomId));
-
                 $rootScope.$broadcast("updateUserList",_user)
-                console.log(40,"getRoom后信息",cache.get(roomId));
                 break;
             case "sendMessage"||"addImg":
                 var _data=data.data,

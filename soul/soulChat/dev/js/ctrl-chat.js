@@ -58,10 +58,16 @@ function chat($scope, $http, $cookies, socket, $stateParams, server, $rootScope,
 
     $scope.$on("updateUserList",function(event,data){
         
-        console.log(61,$scope.room.user)
         var _user=data;
         var is_exist;
-        $scope.room.user.push(_user)
+        $scope.room.user.forEach(function(e,i){
+            if(e.userId==_user.userId){
+                is_exist=true
+            }
+        })
+        if(!is_exist){
+            $scope.room.user.push(_user)
+        }
         console.log("更新后的$scope.room",$scope.room)
     });
 

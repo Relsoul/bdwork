@@ -178,7 +178,7 @@ exports.joinRoom=function(join_user,socket,io){
 
     room_model.findOne({_id:join_user.join.roomId},function(err,docs){
         if(err){
-            socket.emit("err",{
+           socket.emit("err",{
                 code:404,
                 href:"chatList",
                 megs:"无法找到该房间~,正在跳转到房间列表页"

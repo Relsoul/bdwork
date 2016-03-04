@@ -37,11 +37,7 @@ app.factory("server",function($rootScope,socket,$cacheFactory,$interval,$state,$
                 var _data=data.data,
                     roomId=_data.roomId,
                     _user=_data.user;
-                console.log(39,"updateUserList",_data);
-                console.log(40,"getRoom前信息",cache.get(roomId));
-
                 $rootScope.$broadcast("updateUserList",_user)
-                console.log(40,"getRoom后信息",cache.get(roomId));
                 break;
             case "sendMessage"||"addImg":
                 var _data=data.data,
